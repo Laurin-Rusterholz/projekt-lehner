@@ -1,0 +1,16 @@
+{
+  "name": "bkh-brumag",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Website der Britisch-Kurzhaar-Zucht Brumag*CH, Grub AR",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "images": "node scripts/fetch-images.mjs",
+    "serve": "node scripts/serve.mjs",
+    "start": "node build.mjs && node scripts/serve.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

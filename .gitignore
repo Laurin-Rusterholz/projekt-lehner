@@ -1,0 +1,12 @@
+node_modules/
+.DS_Store
+Thumbs.db
+
+# Originalbilder der alten Website – werden mit scripts/fetch-images.mjs geholt
+src/assets/img/_originals/
+
+# Erzeugte Bildgrössen (aus den Originalen ableitbar)
+src/assets/img/**/*-[0-9]*.jpg
+src/assets/img/**/*-[0-9]*.webp
+docs/assets/img/**/*-[0-9]*.jpg
+docs/assets/img/**/*-[0-9]*.webp

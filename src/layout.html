@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{title}}</title>
+<meta name="description" content="{{description}}">
+<link rel="canonical" href="{{canonical}}">
+<meta name="robots" content="{{robots}}">
+<meta name="theme-color" content="#4a5a68" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1b1f24" media="(prefers-color-scheme: dark)">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Brumag*CH – Britisch Kurzhaar">
+<meta property="og:locale" content="de_CH">
+<meta property="og:title" content="{{ogTitle}}">
+<meta property="og:description" content="{{description}}">
+<meta property="og:url" content="{{canonical}}">
+<meta property="og:image" content="{{ogImage}}">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/favicon.svg">
+<link rel="stylesheet" href="assets/css/style.css">
+{{jsonld}}
+</head>
+<body class="{{bodyClass}}">
+<a class="skip-link" href="#inhalt">Direkt zum Inhalt springen</a>
+
+<header class="site-header" id="kopfzeile">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="index.html">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 48 48" focusable="false"><path d="M24 27c-6.2 0-11 3.7-11 8.6 0 3.3 2.5 5.4 6.2 5.4 1.9 0 3.3-.5 4.8-.5s2.9.5 4.8.5c3.7 0 6.2-2.1 6.2-5.4C35 30.7 30.2 27 24 27Z"/><ellipse cx="12.4" cy="20.6" rx="4.1" ry="5.4" transform="rotate(-18 12.4 20.6)"/><ellipse cx="35.6" cy="20.6" rx="4.1" ry="5.4" transform="rotate(18 35.6 20.6)"/><ellipse cx="19.6" cy="12.4" rx="3.8" ry="5.2" transform="rotate(-8 19.6 12.4)"/><ellipse cx="28.4" cy="12.4" rx="3.8" ry="5.2" transform="rotate(8 28.4 12.4)"/></svg>
+      </span>
+      <span class="brand__text">
+        <span class="brand__name">Brumag<span class="brand__star">*</span>CH</span>
+        <span class="brand__tagline">Britisch Kurzhaar &middot; Grub AR</span>
+      </span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="hauptnavigation">
+      <span class="nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span class="nav-toggle__label">Menü</span>
+    </button>
+
+    <nav class="site-nav" id="hauptnavigation" aria-label="Hauptnavigation">
+      <ul class="site-nav__list">
+{{nav}}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="inhalt">
+{{content}}
+</main>
+
+<footer class="site-footer">
+  <div class="wrap site-footer__grid">
+    <div class="site-footer__col">
+      <p class="site-footer__brand">Brumag<span class="brand__star">*</span>CH</p>
+      <p class="site-footer__note">Kleine Britisch-Kurzhaar-Zucht in der Ostschweiz &ndash; seit 2007.</p>
+      <ul class="badges" aria-label="Mitgliedschaften">
+        <li class="badge"><abbr title="Verein Rassekatzen Ostschweiz">RKO</abbr></li>
+        <li class="badge"><abbr title="Fédération Féline Helvétique">FFH</abbr></li>
+      </ul>
+    </div>
+
+    <div class="site-footer__col">
+      <h2 class="site-footer__title">Kontakt</h2>
+      <address class="site-footer__address">
+        Familie Lehner<br>
+        9035 Grub AR, Schweiz<br>
+        <a href="mailto:info@bkh-brumag.ch">info@bkh-brumag.ch</a><br>
+        <a href="tel:+41786784033">+41 (0)78 678 40 33</a>
+      </address>
+    </div>
+
+    <div class="site-footer__col">
+      <h2 class="site-footer__title">Seiten</h2>
+      <ul class="site-footer__links">
+{{footerLinks}}
+      </ul>
+    </div>
+  </div>
+  <div class="wrap site-footer__bottom">
+    <p>&copy; <span data-current-year>{{year}}</span> Familie Lehner, Grub AR</p>
+    <p><a href="#kopfzeile" class="to-top">Nach oben</a></p>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

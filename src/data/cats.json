@@ -1,0 +1,183 @@
+[
+  {
+    "slug": "dayanara",
+    "callName": "Daya",
+    "name": "Dayanara Brumag*CH",
+    "title": "Junior Winner",
+    "colourCode": "BRI c",
+    "colour": "Lilac",
+    "carries": "trägt Cinnamon",
+    "born": "2017-10-17",
+    "bornText": "17. Oktober 2017",
+    "bornPrecision": "day",
+    "sire": {
+      "name": "Irri Irri Katango*CZ",
+      "code": "BRI b",
+      "colour": "Chocolate"
+    },
+    "dam": {
+      "name": "Yoko Brumag*CH",
+      "code": "BRI c",
+      "colour": "Lilac"
+    },
+    "bloodGroup": "b",
+    "health": [
+      "PKD negativ",
+      "FIV negativ",
+      "FeLV negativ"
+    ],
+    "awards": [
+      "3× BIV",
+      "9× Nom. BIS",
+      "7× BIS"
+    ],
+    "intro": "Dayanara ist die Älteste unserer Zuchtkatzen und die Basis mehrerer unserer Linien. Ihr Fell zeigt das kühle, pudrige Lilac; über ihren chocolatefarbenen Vater trägt sie zusätzlich Cinnamon. Als Junior Winner war sie mehrfach erfolgreich auf Ausstellungen im In- und Ausland.",
+    "image": {
+      "base": "assets/img/cats/dayanara",
+      "widths": [
+        480,
+        800,
+        1200
+      ],
+      "alt": "Dayanara, eine Britisch-Kurzhaar-Katze in Lilac, im Portrait",
+      "legacy": "/images/galerie/dayanara/daya.jpg"
+    },
+    "teaser": "Unsere Älteste und die Basis mehrerer Linien – Lilac mit Cinnamon-Träger­schaft."
+  },
+  {
+    "slug": "eusebia",
+    "callName": "Eusebia",
+    "name": "Eusebia Brumag*CH",
+    "title": "",
+    "colourCode": "BRI c",
+    "colour": "Lilac",
+    "carries": "trägt Cinnamon",
+    "born": "2018-05-09",
+    "bornText": "9. Mai 2018",
+    "bornPrecision": "day",
+    "sire": {
+      "name": "PL*Gotham Great Gatsby",
+      "code": "BRI a",
+      "colour": "Blau"
+    },
+    "dam": {
+      "name": "Cindy Brumag*CH",
+      "code": "BRI c",
+      "colour": "Lilac"
+    },
+    "bloodGroup": "AB",
+    "health": [
+      "FIV negativ",
+      "FeLV negativ"
+    ],
+    "awards": [
+      "1× Nom. BIS",
+      "1× BIS"
+    ],
+    "intro": "Eusebia verbindet eine polnische Vaterlinie mit unserer eigenen Zucht: Ihr Vater ist der blaue PL*Gotham Great Gatsby, ihre Mutter unsere lilacfarbene Cindy. Sie ist selbst lilac und trägt Cinnamon – über sie kam dieses Gen zu Hariboo.",
+    "image": {
+      "base": "assets/img/cats/eusebia",
+      "widths": [
+        480,
+        800,
+        1200
+      ],
+      "alt": "Eusebia, eine Britisch-Kurzhaar-Katze in Lilac, im Portrait",
+      "legacy": "/images/galerie/eusebia/eusebia.jpg"
+    },
+    "gallery": [
+      {
+        "base": "assets/img/cats/eusebia-2",
+        "widths": [
+          480,
+          800,
+          1200
+        ],
+        "alt": "Eusebia liegend, mit Blick in die Kamera",
+        "legacy": "/images/galerie/eusebia/sebka1.jpg"
+      }
+    ],
+    "teaser": "Polnische Vaterlinie trifft eigene Zucht – Lilac, trägt Cinnamon."
+  },
+  {
+    "slug": "gigi",
+    "callName": "Gigi",
+    "name": "Gigi Brumag*CH",
+    "title": "",
+    "colourCode": "BRI a",
+    "colour": "Blau",
+    "carries": "",
+    "born": "2020-08-14",
+    "bornText": "14. August 2020",
+    "bornPrecision": "day",
+    "sire": {
+      "name": "Zafar Cat's Avenue*PL",
+      "code": "BRI a",
+      "colour": "Blau"
+    },
+    "dam": {
+      "name": "Dayanara Brumag*CH",
+      "code": "BRI c",
+      "colour": "Lilac"
+    },
+    "bloodGroup": "b",
+    "health": [
+      "FIV negativ",
+      "FeLV negativ"
+    ],
+    "awards": [],
+    "intro": "Gigi ist die Tochter unserer Dayanara und zeigt das klassische Britisch-Blau, für das die Rasse bekannt ist: dichtes Plüschfell, runde Wangen und ein kompakter, kräftiger Körperbau.",
+    "image": {
+      "base": "assets/img/cats/gigi",
+      "widths": [
+        480,
+        800,
+        1200
+      ],
+      "alt": "Gigi, eine blaue Britisch-Kurzhaar-Katze, im Portrait",
+      "legacy": "/images/galerie/gigi/popi.jpg"
+    },
+    "teaser": "Tochter von Dayanara im klassischen Britisch-Blau."
+  },
+  {
+    "slug": "hariboo",
+    "callName": "Hariboo",
+    "name": "Hariboo Brumag*CH",
+    "title": "",
+    "colourCode": "BRI p",
+    "colour": "Fawn",
+    "carries": "",
+    "born": "2021-02",
+    "bornText": "Februar 2021",
+    "bornPrecision": "month",
+    "sire": {
+      "name": "Camino Brumag*CH",
+      "code": "BRI c",
+      "colour": "Lilac"
+    },
+    "dam": {
+      "name": "Eusebia Brumag*CH",
+      "code": "BRI c",
+      "colour": "Lilac"
+    },
+    "bloodGroup": "",
+    "bloodGroupNote": "Bestimmung noch ausstehend",
+    "health": [
+      "FIV negativ",
+      "FeLV negativ"
+    ],
+    "awards": [],
+    "intro": "Hariboo trägt das seltene Fawn – ein warmes, pudriges Beige, das nur entsteht, wenn beide Elterntiere Cinnamon vererben. Beide Eltern, Camino und Eusebia, stammen aus unserer eigenen Zucht.",
+    "image": {
+      "base": "assets/img/cats/hariboo",
+      "widths": [
+        480,
+        800,
+        1200
+      ],
+      "alt": "Hariboo, eine Britisch-Kurzhaar-Katze in Fawn, im Portrait",
+      "legacy": "/images/galerie/hariboo/hariboo.jpg"
+    },
+    "teaser": "Fawn – die seltene Farbe, die nur aus zwei Cinnamon-Trägern entsteht."
+  }
+]

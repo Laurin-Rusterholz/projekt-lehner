@@ -1,0 +1,126 @@
+<!--meta
+title: Kontakt
+description: Familie Lehner, 9035 Grub AR (in der Nähe von St. Gallen), Schweiz. Telefon +41 (0)78 678 40 33, E-Mail info@bkh-brumag.ch – oder schreiben Sie uns direkt über das Kontaktformular.
+jsonld: organisation
+-->
+
+<section class="page-head wrap">
+  <p class="page-head__kicker">Kontakt</p>
+  <h1>Wir freuen uns auf Ihre Nachricht</h1>
+  <p class="page-head__lead">
+    Am liebsten sprechen wir persönlich mit Ihnen. Rufen Sie an, schreiben Sie eine E-Mail oder nutzen Sie das
+    Formular &ndash; wir melden uns zurück.
+  </p>
+</section>
+
+<section class="section section--tight wrap">
+  <div class="grid grid--split">
+    <div class="stack">
+      <h2>So erreichen Sie uns</h2>
+      <ul class="contact-list">
+        <li>
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          </span>
+          <div>
+            <span class="contact-list__label">Adresse</span>
+            <address style="font-style:normal">
+              Familie Lehner<br>
+              9035 Grub AR<br>
+              Schweiz
+            </address>
+            <p class="hint" style="font-size:.88rem">In der Nähe von St. Gallen. Besuche nur nach Absprache.</p>
+          </div>
+        </li>
+        <li>
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false"><path d="M6.5 3h4l1.6 4-2.2 1.4a12 12 0 0 0 5.7 5.7L17 11.9l4 1.6v4a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.2 2 2 0 0 1 6.5 3Z"/></svg>
+          </span>
+          <div>
+            <span class="contact-list__label">Telefon</span>
+            <p style="margin:0"><a href="tel:{{phone-href}}">{{phone}}</a></p>
+          </div>
+        </li>
+        <li>
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>
+          </span>
+          <div>
+            <span class="contact-list__label">E-Mail</span>
+            <p style="margin:0"><a href="mailto:{{email}}">{{email}}</a></p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="note">
+        <p class="note__title">Antwortzeit</p>
+        <p>
+          Wir sind eine Familie und keine Firma &ndash; manchmal dauert eine Antwort ein, zwei Tage. Wenn es
+          schnell gehen soll, rufen Sie am besten an.
+        </p>
+      </div>
+    </div>
+
+    <div class="stack">
+      <h2>Kontaktformular</h2>
+      <form class="form" data-contact-form method="post" action="mailto:{{email}}" enctype="text/plain" novalidate>
+        <p class="form__status" role="status" aria-live="polite"></p>
+
+        <div class="form__row">
+          <label for="f-name">Name <span class="req" aria-hidden="true">*</span></label>
+          <input id="f-name" name="name" type="text" autocomplete="name" required>
+        </div>
+
+        <div class="form__row form__row--split">
+          <div class="form__row">
+            <label for="f-email">E-Mail <span class="req" aria-hidden="true">*</span></label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="form__row">
+            <label for="f-tel">Telefon <span class="hint">(optional)</span></label>
+            <input id="f-tel" name="telefon" type="tel" autocomplete="tel">
+          </div>
+        </div>
+
+        <div class="form__row">
+          <label for="f-betreff">Betreff</label>
+          <select id="f-betreff" name="betreff">
+            <option value="Anfrage zu den aktuellen Babies">Anfrage zu den aktuellen Babies</option>
+            <option value="Frage zur Abgabe">Frage zur Abgabe</option>
+            <option value="Frage zur Zucht">Frage zur Zucht</option>
+            <option value="Anderes Anliegen">Anderes Anliegen</option>
+          </select>
+        </div>
+
+        <div class="form__row">
+          <label for="f-nachricht">Ihre Nachricht <span class="req" aria-hidden="true">*</span></label>
+          <textarea id="f-nachricht" name="nachricht" required
+                    placeholder="Erzählen Sie uns kurz von sich: Wer wohnt bei Ihnen, Wohnung oder Haus, gibt es schon Tiere?"></textarea>
+        </div>
+
+        <div class="form__consent">
+          <input id="f-consent" name="einwilligung" type="checkbox" required>
+          <label for="f-consent">
+            Ich bin einverstanden, dass meine Angaben zur Beantwortung meiner Anfrage gespeichert werden.
+            Hinweise dazu in der <a href="datenschutz.html">Datenschutzerklärung</a>.
+          </label>
+        </div>
+
+        <div class="form__hp" aria-hidden="true">
+          <label for="f-website">Bitte dieses Feld leer lassen</label>
+          <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn--primary" type="submit">Nachricht senden</button>
+        </div>
+
+        <p class="hint" style="font-size:.85rem">
+          Mit <span class="req" aria-hidden="true">*</span> markierte Felder sind Pflichtfelder. Sollte das
+          Formular bei Ihnen nicht funktionieren, schreiben Sie uns einfach direkt an
+          <a href="mailto:{{email}}">{{email}}</a>.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>

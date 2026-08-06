@@ -1,0 +1,47 @@
+{
+  "name": "Brumag*CH",
+  "tagline": "Britisch Kurzhaar Katzenzucht",
+  "shortDescription": "Kleine Britisch-Kurzhaar-Zucht in Grub AR in der Ostschweiz. Seit 2007 ziehen wir wesensstarke, gut sozialisierte Katzen in unserem Zuhause auf.",
+  "url": "https://www.bkh-brumag.ch",
+  "locale": "de-CH",
+  "foundedYear": 2007,
+  "breeder": {
+    "family": "Familie Lehner",
+    "street": "",
+    "postalCode": "9035",
+    "city": "Grub AR",
+    "region": "Appenzell Ausserrhoden",
+    "country": "Schweiz",
+    "countryCode": "CH",
+    "locationHint": "in der Nähe von St. Gallen",
+    "email": "info@bkh-brumag.ch",
+    "phone": "+41 78 678 40 33",
+    "phoneDisplay": "+41 (0)78 678 40 33"
+  },
+  "memberships": [
+    {
+      "abbr": "RKO",
+      "name": "Verein Rassekatzen Ostschweiz"
+    },
+    {
+      "abbr": "FFH",
+      "name": "Fédération Féline Helvétique"
+    }
+  ],
+  "nav": [
+    { "href": "index.html", "label": "Start", "key": "start" },
+    { "href": "ueber-uns.html", "label": "Über uns", "key": "ueber-uns" },
+    { "href": "katzen.html", "label": "Unsere Katzen", "key": "katzen" },
+    { "href": "babies.html", "label": "Babies", "key": "babies" },
+    { "href": "verpaarungen.html", "label": "Verpaarungen", "key": "verpaarungen" },
+    { "href": "abgabe.html", "label": "Abgabe", "key": "abgabe" },
+    { "href": "kontakt.html", "label": "Kontakt", "key": "kontakt" }
+  ],
+  "footerLinks": [
+    { "href": "impressum.html", "label": "Impressum" },
+    { "href": "datenschutz.html", "label": "Datenschutz" },
+    { "href": "babies-archiv.html", "label": "Babies-Archiv" },
+    { "href": "sitemap.xml", "label": "Sitemap" }
+  ],
+  "legacyImageBase": "https://www.bkh-brumag.ch"
+}

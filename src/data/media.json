@@ -1,0 +1,109 @@
+{
+  "hero": {
+    "widths": [
+      900,
+      1400,
+      2000
+    ],
+    "sizes": "100vw",
+    "label": "Impressionen unserer Britisch-Kurzhaar-Katzen",
+    "slides": [
+      {
+        "base": "assets/img/hero/hero-01",
+        "legacy": "/images/bg_n/_D3A2215.jpg"
+      },
+      {
+        "base": "assets/img/hero/hero-02",
+        "legacy": "/images/bg_n/_D3A2295.jpg"
+      },
+      {
+        "base": "assets/img/hero/hero-03",
+        "legacy": "/images/bg_n/_D3A5958.JPG"
+      },
+      {
+        "base": "assets/img/hero/hero-04-baby",
+        "legacy": "/images/bg_n/baby.jpg"
+      },
+      {
+        "base": "assets/img/hero/hero-05-cream",
+        "legacy": "/images/bg_n/cream.jpg"
+      },
+      {
+        "base": "assets/img/hero/hero-06",
+        "legacy": "/images/bg_n/ddd.jpg"
+      },
+      {
+        "base": "assets/img/hero/hero-07-eusebia",
+        "legacy": "/images/bg_n/eu.jpg"
+      },
+      {
+        "base": "assets/img/hero/hero-08-hariboo",
+        "legacy": "/images/bg_n/harri.jpg"
+      }
+    ]
+  },
+  "litter": {
+    "bornText": "18. März 2026",
+    "born": "2026-03-18",
+    "images": [
+      {
+        "base": "assets/img/babies/wurf-2026-03-01",
+        "widths": [
+          480,
+          800,
+          1200
+        ],
+        "alt": "Britisch-Kurzhaar-Kitten aus unserem Wurf vom 18. März 2026",
+        "legacy": "/images/Babies/IMG_3420.jpeg"
+      }
+    ]
+  },
+  "archive": {
+    "widths": [
+      400,
+      800
+    ],
+    "images": [
+      {
+        "base": "assets/img/archiv/archiv-01",
+        "alt": "Britisch-Kurzhaar-Kitten aus einem früheren Wurf",
+        "legacy": "/cache/preview/cd7191aafe06fb85a5d1d30a9c0990f8.jpg"
+      },
+      {
+        "base": "assets/img/archiv/archiv-02",
+        "alt": "Britisch-Kurzhaar-Kitten aus einem früheren Wurf",
+        "legacy": "/cache/preview/4080d2d2cce28d2c1fdbbfb86d19de57.jpg"
+      },
+      {
+        "base": "assets/img/archiv/archiv-03",
+        "alt": "Britisch-Kurzhaar-Kitten aus einem früheren Wurf",
+        "legacy": "/cache/preview/d42362f8ec6429525648983b12ebd22c.jpg"
+      },
+      {
+        "base": "assets/img/archiv/archiv-04",
+        "alt": "Britisch-Kurzhaar-Kitten aus einem früheren Wurf",
+        "legacy": "/cache/preview/b388e31a05941316b2f8ddd02f0e3402.jpg"
+      },
+      {
+        "base": "assets/img/archiv/archiv-05",
+        "alt": "Britisch-Kurzhaar-Kitten aus einem früheren Wurf",
+        "legacy": "/cache/preview/184716fa21d7fb6afa229a10c4cbb676.jpg"
+      },
+      {
+        "base": "assets/img/archiv/archiv-06",
+        "alt": "Britisch-Kurzhaar-Kitten aus einem früheren Wurf",
+        "legacy": "/cache/preview/b83563abbd9270d6701918d936a97df0.jpg"
+      },
+      {
+        "base": "assets/img/archiv/archiv-07",
+        "alt": "Britisch-Kurzhaar-Kitten aus einem früheren Wurf",
+        "legacy": "/cache/preview/92874d8f057d0dc92386f471fd940c59.jpg"
+      },
+      {
+        "base": "assets/img/archiv/archiv-08",
+        "alt": "Britisch-Kurzhaar-Kitten aus einem früheren Wurf",
+        "legacy": "/cache/preview/5d013187cffeb79f44482ca6ca901b35.jpg"
+      }
+    ]
+  }
+}
