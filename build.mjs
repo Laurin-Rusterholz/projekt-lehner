@@ -117,7 +117,7 @@ ${picture(cat.image, { sizes: '(min-width: 56rem) 25vw, (min-width: 38rem) 45vw,
           <p class="card__meta"><span data-birth="${cat.born}">${meta}</span></p>
           ${tags ? `<ul class="tag-list">${tags}</ul>` : ''}
           <p class="card__text">${esc(cat.teaser)}</p>
-          <p class="card__more" aria-hidden="true">Steckbrief ansehen →</p>
+          <p class="card__more" aria-hidden="true">Steckbrief ansehen</p>
         </div>
       </article>`;
 }
@@ -252,7 +252,7 @@ ${awards}
 
 <section class="section wrap">
   <div class="btn-row">
-    <a class="btn btn--ghost" href="katzen.html">← Alle Katzen</a>
+    <a class="btn btn--ghost" href="katzen.html">Alle Katzen</a>
     <a class="btn btn--primary" href="kontakt.html">Kontakt aufnehmen</a>
   </div>
 </section>`;
@@ -422,7 +422,11 @@ async function build() {
     slugs.push(await render(layout, { slug: `katze-${cat.slug}`, meta, body: catPageBody(cat) }));
   }
 
-  await cp(path.join(SRC, 'assets'), path.join(OUT, 'assets'), { recursive: true });
+  // _originals (unverkleinerte Downloads) gehören nicht ins Deployment.
+  await cp(path.join(SRC, 'assets'), path.join(OUT, 'assets'), {
+    recursive: true,
+    filter: (src) => !src.includes('_originals')
+  });
   await writeFile(path.join(OUT, 'assets', 'img', 'favicon.svg'), FAVICON, 'utf8');
   await writeFile(path.join(OUT, '.nojekyll'), '', 'utf8');
   await writeSitemap(slugs);

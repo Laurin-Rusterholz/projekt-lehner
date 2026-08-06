@@ -3,11 +3,16 @@
 # Ohne diese Angabe veröffentlicht Netlify das Repo-Root und zeigt nur 404.
 
 [build]
-  command = "node build.mjs"
+  command = "node scripts/fetch-images.mjs && node build.mjs"
   publish = "docs"
 
 [build.environment]
   NODE_VERSION = "20"
+
+# Netlify installiert die Abhängigkeiten (sharp) automatisch. Das
+# fetch-Skript lädt die Originalbilder der alten Website und erzeugt
+# daraus verkleinerte WebP/JPEG-Varianten – erst dadurch werden die
+# Bilder auf dem Handy schnell und scharf.
 
 # Saubere 404-Seite (docs/404.html wird von Netlify automatisch erkannt,
 # der Eintrag hier macht es explizit).

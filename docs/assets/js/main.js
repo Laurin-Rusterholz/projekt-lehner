@@ -300,6 +300,38 @@
     });
   }
 
+  /* --- Sanftes Einblenden beim Scrollen ---------------------------------
+     Karten, Zahlen, Schritte usw. erscheinen gestaffelt, sobald sie in den
+     sichtbaren Bereich rollen. Ohne JS oder mit reduzierter Bewegung bleibt
+     alles sofort sichtbar. */
+  function initReveal() {
+    if (prefersReducedMotion.matches || !('IntersectionObserver' in window)) return;
+
+    const targets = $$('.card, .stats li, .steps li, .timeline li, .gallery li, .note, .cta, .facts, .contact-list li');
+    if (!targets.length) return;
+
+    // Staffelung: Nachbarn im selben Elternelement bekommen wachsende Verzögerung.
+    const byParent = new Map();
+    targets.forEach((el) => {
+      const parent = el.parentElement;
+      const index = byParent.get(parent) || 0;
+      byParent.set(parent, index + 1);
+      el.style.setProperty('--reveal-delay', `${Math.min(index, 5) * 0.09}s`);
+      el.classList.add('reveal');
+    });
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+
+    targets.forEach((el) => io.observe(el));
+  }
+
   /* --- Jahreszahl in der Fusszeile -------------------------------------- */
   function initYear() {
     const el = $('[data-current-year]');
@@ -313,5 +345,6 @@
   initLightbox();
   initAges();
   initForm();
+  initReveal();
   initYear();
 })();

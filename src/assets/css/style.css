@@ -19,7 +19,8 @@
 :root {
   color-scheme: light dark;
 
-  --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  /* Kräftige Grotesk statt Serife: wirkt handgemacht-modern statt generisch */
+  --font-display: "Avenir Next", "Avenir", "Segoe UI Variable Display", "Segoe UI", Futura, system-ui, sans-serif;
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
   --paper: #faf5ec;
@@ -96,11 +97,11 @@ body {
 }
 
 h1, h2, h3, h4 {
-  font-family: var(--font-serif);
-  font-weight: 700;
-  line-height: 1.15;
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1.12;
   margin: 0 0 0.5em;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.022em;
   text-wrap: balance;
   /* Deutsche Komposita brechen sonst aus schmalen Spalten heraus. */
   overflow-wrap: break-word;
@@ -262,7 +263,7 @@ kbd {
 .brand__mark { width: 2.3rem; height: 2.3rem; flex: none; color: var(--brand); }
 .brand__mark svg { width: 100%; height: 100%; fill: currentColor; }
 .brand__text { display: flex; flex-direction: column; line-height: 1.15; }
-.brand__name { font-family: var(--font-serif); font-size: 1.35rem; font-weight: 700; }
+.brand__name { font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; }
 .brand__star { color: var(--second); }
 .brand__tagline { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
 
@@ -356,7 +357,7 @@ kbd {
 .hero__slides { position: absolute; inset: 0; z-index: -2; }
 .hero__slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.4s ease; }
 .hero__slide.is-active { opacity: 1; }
-.hero__slide img { width: 100%; height: 100%; object-fit: cover; }
+.hero__slide img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 32%; }
 
 .hero::after {
   content: "";
@@ -401,6 +402,21 @@ kbd {
   cursor: pointer;
 }
 .hero__dot[aria-current="true"] { background: #fff; transform: scale(1.15); }
+
+/* Handy: Hero kompakter, Buttons volle Breite, ruhigerer Ausschnitt */
+@media (max-width: 47.99rem) {
+  .hero {
+    margin: 0.55rem;
+    min-height: min(70vh, 34rem);
+    padding: 1.4rem;
+    padding-top: 4.5rem;
+    border-radius: 18px;
+  }
+  .hero__text { font-size: 1.02em; }
+  .hero .btn-row { width: 100%; }
+  .hero .btn-row .btn { flex: 1 1 100%; }
+  .hero__dots { bottom: 0.8rem; }
+}
 
 /* Verfügbarkeits-Badge (Attention → Action) */
 .avail {
@@ -487,7 +503,7 @@ kbd {
 .stats li { background: var(--paper); padding: 1.5rem 1.2rem; text-align: center; }
 .stats__value {
   display: block;
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: clamp(1.7rem, 1.4rem + 1.2vw, 2.4rem);
   font-weight: 700;
   color: var(--brand);
@@ -655,7 +671,7 @@ kbd {
   place-content: center;
   padding: 1.5rem;
   text-align: center;
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: 0.95rem;
   color: var(--ink-soft);
   background:
@@ -756,7 +772,7 @@ figure.figure { margin: 0; }
   font-size: 0.95rem;
 }
 .site-footer__grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
-.site-footer__brand { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700; margin: 0 0 0.35rem; }
+.site-footer__brand { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; margin: 0 0 0.35rem; }
 .site-footer__note { color: var(--ink-soft); margin: 0 0 0.9rem; max-width: 28ch; }
 .site-footer__title { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: var(--ink-soft); font-family: var(--font-sans); margin: 0 0 0.7rem; }
 .site-footer__address { font-style: normal; line-height: 1.85; }
@@ -823,6 +839,48 @@ figure.figure { margin: 0; }
 .breadcrumb ol { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0; padding: 0; }
 .breadcrumb li + li::before { content: "›"; padding-right: 0.4rem; color: var(--brand); }
 
+/* --- 11b Animationen ---------------------------------------------------- */
+
+/* Sanftes Einblenden beim Scrollen. Die Klasse .reveal wird per JS gesetzt –
+   ohne JS bleibt alles sofort sichtbar. */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.2, 0.7, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0s);
+}
+.reveal.in { opacity: 1; transform: none; }
+
+/* Hero: Inhalt staffelt sich beim Laden ein */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+.hero__inner > * { animation: rise-in 0.8s cubic-bezier(0.2, 0.7, 0.3, 1) backwards; }
+.hero__inner > :nth-child(1) { animation-delay: 0.1s; }
+.hero__inner > :nth-child(2) { animation-delay: 0.22s; }
+.hero__inner > :nth-child(3) { animation-delay: 0.34s; }
+.hero__inner > :nth-child(4) { animation-delay: 0.46s; }
+.hero__inner > :nth-child(5) { animation-delay: 0.58s; }
+
+/* Ken-Burns: aktives Hero-Bild zoomt ganz langsam aus */
+.hero__slide img { transform: scale(1.09); transition: transform 8s ease-out; }
+.hero__slide.is-active img { transform: scale(1); }
+
+/* Karten: Pfeil wandert beim Überfahren mit */
+.card__more::after { content: "→"; display: inline-block; margin-left: 0.35rem; transition: transform 0.2s ease; }
+.card--link:hover .card__more::after, .card--link:focus-within .card__more::after { transform: translateX(5px); }
+
+/* Buttons: leichtes Eindrücken beim Klick */
+.btn:active { transform: translateY(0) scale(0.97); }
+
+/* Lightbox: weiches Aufblenden */
+@keyframes lightbox-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+.lightbox[open] .lightbox__inner { animation: lightbox-in 0.25s ease-out; }
+
 /* --- 12 Motion / Print ------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -832,7 +890,9 @@ figure.figure { margin: 0; }
     transition-duration: 0.001ms !important;
   }
   .hero__slide { transition: none; }
+  .hero__slide img { transform: none; transition: none; }
   .dot { animation: none; }
+  .reveal { opacity: 1; transform: none; }
 }
 
 @media print {
