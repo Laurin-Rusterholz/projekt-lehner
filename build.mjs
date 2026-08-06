@@ -351,6 +351,7 @@ async function render(layout, { slug, meta, body }) {
     .replace('{{bodyClass}}', `page-${slug}`)
     .replace('{{nav}}', navHtml(meta.nav || slug))
     .replace('{{footerLinks}}', footerLinksHtml())
+    .replace('{{announceDate}}', esc(media.litter.bornText))
     .replace('{{year}}', String(BUILD_YEAR))
     .replace('{{content}}', expand(body).trimEnd());
 

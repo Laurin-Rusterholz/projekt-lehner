@@ -135,6 +135,47 @@ Bestätigung der Familie Lehner:
 
 ---
 
+## Konzept: Zielgruppe, AIDA und Stil
+
+### Zielgruppe
+
+Familien und Paare (ca. 30–65) aus der Deutschschweiz, die ein Rassekitten für das
+eigene Zuhause suchen. Sie kommen emotional (Kittenbilder) – entscheiden aber über
+Vertrauen: Ist die Zucht seriös? Sind die Tiere gesund? Viele besuchen die Seite
+mobil und greifen lieber zum Telefon als zum Formular. Darauf ist alles ausgerichtet:
+grosse Tippflächen, Telefonnummer als gleichwertiger Handlungsaufruf, „Sie“-Ansprache,
+ehrlicher Ton statt Verkaufssprache.
+
+### AIDA-Aufbau der Startseite
+
+| Stufe | Umsetzung |
+| --- | --- |
+| **Attention** | Ankündigungsleiste („Wir haben Babies“) auf jeder Seite, Hero mit emotionaler Headline und pulsierendem Verfügbarkeits-Badge |
+| **Interest** | Vertrauensband in Zahlen (seit 2007, RKO & FFH, 4 Zuchtkatzen, HCM-Ultraschall) und „Warum eine Britisch Kurzhaar?“ |
+| **Desire** | „Warum Brumag*CH?“ mit belegbaren Argumenten, Elterntier-Karten, aktueller Wurf mit Bild |
+| **Action** | Abschluss-CTA „Der erste Schritt: ein Gespräch“ mit Telefon + Formular, hervorgehobener Kontakt-Button in der Navigation, Reassurance („unverbindlich, Antwort innert 1–2 Tagen“) |
+
+Auch Unterseiten folgen dem Muster: Jede endet in einem klaren nächsten Schritt.
+
+### Stilkonzept „Warmes Plüsch“
+
+Die Farbwelt kommt von der Katze selbst: **Kupfer** (`#a8672f`, die Augenfarbe der BKH)
+trägt alle Handlungsaufrufe, **Blaugrau** (`#5b708a`, die Fellfarbe) setzt ruhige
+Nebenakzente, dazu warme Creme- und Espresso-Töne statt kühlem Grau. Runde, weiche
+Formen (Pill-Buttons, 22-px-Karten, gerundeter Hero) transportieren das „Plüschige“
+der Rasse, ohne kindisch zu wirken. Serifen-Headlines geben die nötige Seriosität.
+Dark Mode, reduzierte Bewegung und Druckansicht sind mitgestaltet.
+
+---
+
+## Netlify
+
+Die beiliegende `netlify.toml` setzt `publish = "docs"` und `command = "node build.mjs"`.
+Ohne sie veröffentlicht Netlify das Repo-Root und zeigt nur „Page not found“.
+Repo verbinden, deployen – weitere Einstellungen sind nicht nötig.
+
+---
+
 ## Veröffentlichen
 
 **GitHub Pages:** in den Repository-Einstellungen unter *Pages* als Quelle den Branch und den

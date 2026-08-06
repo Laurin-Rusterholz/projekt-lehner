@@ -1,0 +1,17 @@
+# Netlify-Konfiguration
+# Die fertige Website liegt im Ordner docs/ (Build-Ergebnis von build.mjs).
+# Ohne diese Angabe veröffentlicht Netlify das Repo-Root und zeigt nur 404.
+
+[build]
+  command = "node build.mjs"
+  publish = "docs"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Saubere 404-Seite (docs/404.html wird von Netlify automatisch erkannt,
+# der Eintrag hier macht es explizit).
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404

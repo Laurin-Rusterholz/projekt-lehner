@@ -1,115 +1,176 @@
 <!--meta
 title:
-description: Brumag*CH – kleine Britisch-Kurzhaar-Zucht in Grub AR (Ostschweiz). Seit 2007 ziehen wir wesensstarke, gesundheitlich kontrollierte BKH-Katzen mitten in der Familie auf.
+description: Brumag*CH – kleine Britisch-Kurzhaar-Zucht in Grub AR (Ostschweiz). Seit 2007 ziehen wir wesensstarke, gesundheitlich kontrollierte BKH-Kitten mitten in der Familie auf. Aktuell Kitten verfügbar.
 nav: start
 jsonld: organisation
 -->
 
+<!-- ============================================================
+     AIDA · Attention – emotionaler Einstieg + Verfügbarkeits-Badge
+     ============================================================ -->
 <section class="hero" data-hero>
 {{hero}}
-  <div class="wrap hero__inner">
-    <p class="hero__kicker">Brumag<span class="brand__star">*</span>CH &middot; seit {{founded-year}}</p>
-    <h1>Britisch Kurzhaar aus der Ostschweiz</h1>
+  <div class="hero__inner">
+    <p class="avail"><span class="dot" aria-hidden="true"></span> Kitten verfügbar &ndash; Wurf vom {{litter-date}}</p>
+    <p class="hero__kicker">Brumag<span class="brand__star">*</span>CH &middot; Familienzucht seit {{founded-year}}</p>
+    <h1>Ein Kitten, das ein Leben lang Familie ist</h1>
     <p class="hero__text">
-      Eine kleine Liebhaberzucht in Grub AR. Unsere Katzen wachsen mitten in der Familie auf &ndash;
-      mit viel Zeit, tierärztlicher Begleitung und Platz zum Katzsein.
+      Britisch-Kurzhaar-Kitten aus liebevoller Familienzucht in Grub AR &ndash; gesund getestet,
+      mitten im Alltag sozialisiert und erst dann bereit für den Auszug, wenn sie es wirklich sind.
     </p>
     <div class="btn-row">
-      <a class="btn btn--light" href="babies.html">Aktuelle Babies</a>
-      <a class="btn btn--ghost" href="katzen.html">Unsere Katzen</a>
+      <a class="btn btn--primary" href="babies.html">Aktuelle Babies ansehen</a>
+      <a class="btn btn--light" href="tel:{{phone-href}}">Anrufen: {{phone}}</a>
     </div>
   </div>
 </section>
 
+<!-- ============================================================
+     AIDA · Interest – Vertrauensband: Fakten auf einen Blick
+     ============================================================ -->
+<section class="section--tight" aria-label="Unsere Zucht in Zahlen">
+  <ul class="stats">
+    <li><span class="stats__value">{{founded-year}}</span><span class="stats__label">Zucht seit &ndash; über {{years-active}} Jahre Erfahrung</span></li>
+    <li><span class="stats__value">2</span><span class="stats__label">Verbände: RKO &amp; FFH</span></li>
+    <li><span class="stats__value">4</span><span class="stats__label">Zuchtkatzen &ndash; klein und familiär</span></li>
+    <li><span class="stats__value">HCM</span><span class="stats__label">Herzultraschall am Tierspital der Uni Zürich</span></li>
+  </ul>
+</section>
+
+<!-- ============================================================
+     AIDA · Interest – Warum eine Britisch Kurzhaar?
+     ============================================================ -->
 <section class="section wrap">
-  <div class="grid grid--split">
-    <div class="stack">
-      <p class="page-head__kicker">Herzlich willkommen</p>
-      <h2>Plüschfell, runde Augen und ein ruhiges Gemüt</h2>
-      <p class="lead">
-        Seit {{founded-year}} &ndash; und damit seit {{years-active}} Jahren &ndash; züchten wir Britisch-Kurzhaar-Katzen
-        in Grub AR, unweit von St. Gallen. Bei uns leben nur wenige Katzen, dafür mit umso mehr Aufmerksamkeit.
-      </p>
-      <p>
-        Uns geht es nicht um möglichst viele Würfe, sondern um Tiere, die gesund sind, ein festes Wesen haben
-        und den Alltag in einem Zuhause kennen: Staubsauger, Türklingel, Kinderstimmen. Die Elterntiere wählen
-        wir gezielt aus unserer eigenen Zucht oder bei befreundeten Züchterinnen und Züchtern in ganz Europa aus.
-      </p>
-      <div class="btn-row">
-        <a class="btn btn--primary" href="ueber-uns.html">Über unsere Zucht</a>
-        <a class="btn btn--ghost" href="abgabe.html">Informationen zur Abgabe</a>
-      </div>
-    </div>
-    <div class="stack">
-      <div class="note">
-        <p class="note__title">Aktuell</p>
-        <p>
-          Bei uns sind am <time datetime="{{litter-datetime}}">{{litter-date}}</time> Kitten geboren.
-          Wer Interesse an einem unserer Babies hat, meldet sich am besten direkt bei uns.
-        </p>
-        <p style="margin-top:.8rem"><a href="babies.html">Zu den aktuellen Babies →</a></p>
-      </div>
-      <dl class="facts">
-        <dt>Zucht seit</dt>
-        <dd>{{founded-year}}</dd>
-        <dt>Rasse</dt>
-        <dd>Britisch Kurzhaar (BRI)</dd>
-        <dt>Mitglied</dt>
-        <dd>Verein Rassekatzen Ostschweiz (RKO) &middot; Fédération Féline Helvétique (FFH)</dd>
-        <dt>Standort</dt>
-        <dd>9035 Grub AR, Schweiz</dd>
-      </dl>
-    </div>
-  </div>
-</section>
-
-<section class="section section--alt section--edge">
-  <div class="wrap">
-    <p class="page-head__kicker">Unsere Katzen</p>
-    <h2>Die Katzen, mit denen wir züchten</h2>
-    <p class="lead" style="margin-bottom:2rem">
-      Vier Katzen, vier Farben &ndash; von klassischem Blau über Lilac bis zum seltenen Fawn.
-    </p>
-{{cats-grid}}
-  </div>
-</section>
-
-<section class="section wrap">
+  <p class="kicker">Die richtige Katze für Sie?</p>
+  <h2>Warum eine Britisch Kurzhaar?</h2>
+  <p class="lead" style="margin-bottom:2rem">
+    Kaum eine Rasse passt so gut in ein Familienzuhause: ruhig, anhänglich und unkompliziert.
+  </p>
   <div class="grid grid--3">
     <div class="stack">
-      <h3>Gesundheit zuerst</h3>
+      <h3>Gelassen im Familienalltag</h3>
       <p>
-        Alle Zuchtkatzen sind auf FIV, FeLV und PKD getestet, geimpft und werden regelmässig per Herzultraschall
-        am Tierspital der Universität Zürich auf HCM untersucht.
+        Britisch Kurzhaar sind ausgeglichen und geduldig &ndash; auch mit Kindern. Sie spielen gern,
+        brauchen aber kein Dauerprogramm und ruhen mitten im Trubel.
       </p>
     </div>
     <div class="stack">
-      <h3>Aufgewachsen in der Familie</h3>
+      <h3>Unkompliziert im Zusammenleben</h3>
       <p>
-        Unsere Kitten kommen im Wohnbereich zur Welt und lernen von Anfang an Menschen, Geräusche und Alltag
-        kennen. Das legt den Grundstein für gelassene, zutrauliche Katzen.
+        Das dichte Plüschfell ist pflegeleicht, die Katzen sind reine Wohnungskatzen ohne Drang
+        nach draussen &ndash; ideal auch für die Wohnung mit gesichertem Balkon.
       </p>
     </div>
     <div class="stack">
-      <h3>Ausstellungen im In- und Ausland</h3>
+      <h3>Ein Begleiter für viele Jahre</h3>
       <p>
-        Wir zeigen unsere Katzen regelmässig auf Ausstellungen. Das unabhängige Urteil der Richterinnen und
-        Richter hilft uns, unsere Zucht ehrlich einzuschätzen.
+        Eine BKH bleibt gut 15 Jahre an Ihrer Seite. Umso wichtiger, dass sie aus einer Zucht kommt,
+        die auf Gesundheit und Wesen achtet &ndash; nicht auf Stückzahl.
       </p>
     </div>
   </div>
 </section>
 
+<!-- ============================================================
+     AIDA · Interest → Desire – Warum von uns?
+     ============================================================ -->
+<section class="section section--alt section--edge">
+  <div class="wrap">
+    <div class="grid grid--split">
+      <div class="stack">
+        <p class="kicker">Warum Brumag*CH?</p>
+        <h2>Aufgewachsen mitten in der Familie &ndash; nicht im Zwinger</h2>
+        <p class="lead">
+          Bei uns leben nur wenige Katzen, dafür mit umso mehr Aufmerksamkeit. Unsere Kitten kommen im
+          Wohnbereich zur Welt und kennen Staubsauger, Türklingel und Kinderstimmen, bevor sie ausziehen.
+        </p>
+        <ul class="checklist">
+          <li><strong>Gesundheit belegt:</strong> Elterntiere auf FIV, FeLV und PKD getestet, geimpft, Herzultraschall (HCM) am Tierspital der Universität Zürich.</li>
+          <li><strong>Durchdachte Verpaarungen:</strong> Blutgruppen geprüft, Linien bewusst aus eigener Zucht und von befreundeten Züchtern in Europa.</li>
+          <li><strong>Persönliche Übergabe:</strong> Jedes Kitten wird bei uns zu Hause übergeben &ndash; Sie sehen, wo es aufgewachsen ist.</li>
+          <li><strong>Erreichbar auch danach:</strong> Fragen zu Futter, Verhalten oder Gesundheit beantworten wir ein Katzenleben lang.</li>
+        </ul>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="ueber-uns.html">Mehr über unsere Zucht</a>
+          <a class="btn btn--ghost" href="verpaarungen.html">So planen wir Verpaarungen</a>
+        </div>
+      </div>
+      <div class="stack">
+        <dl class="facts">
+          <dt>Zuchtname</dt>
+          <dd>Brumag<span class="brand__star">*</span>CH</dd>
+          <dt>Rasse</dt>
+          <dd>Britisch Kurzhaar (BRI)</dd>
+          <dt>Mitglied</dt>
+          <dd>Verein Rassekatzen Ostschweiz (RKO) &middot; Fédération Féline Helvétique (FFH)</dd>
+          <dt>Standort</dt>
+          <dd>9035 Grub AR &ndash; in der Nähe von St. Gallen</dd>
+        </dl>
+        <div class="note">
+          <p class="note__title">Ehrlich beraten</p>
+          <p>
+            Nicht jede Situation passt zu jedem Kitten &ndash; und umgekehrt. Wir sagen Ihnen offen,
+            was wir empfehlen: auch wenn das mal &laquo;lieber zwei Katzen&raquo; oder
+            &laquo;lieber etwas warten&raquo; heisst.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     AIDA · Desire – die Elterntiere kennenlernen
+     ============================================================ -->
+<section class="section wrap">
+  <p class="kicker">Unsere Katzen</p>
+  <h2>Lernen Sie die Eltern Ihres Kittens kennen</h2>
+  <p class="lead" style="margin-bottom:2rem">
+    Vier Katzen, vier Farben &ndash; von klassischem Blau über Lilac bis zum seltenen Fawn.
+    Jede mit vollständigem Steckbrief: Abstammung, Tests, Charakter.
+  </p>
+{{cats-grid}}
+</section>
+
+<!-- ============================================================
+     AIDA · Desire → Action – aktueller Wurf
+     ============================================================ -->
+<section class="section section--alt section--edge">
+  <div class="wrap">
+    <div class="grid grid--split grid--split--media-first">
+      <div class="stack">
+{{litter-image}}
+      </div>
+      <div class="stack">
+        <p class="avail avail--solid"><span class="dot" aria-hidden="true"></span> Aktuell Kitten verfügbar</p>
+        <h2>Unser Wurf vom {{litter-date}}</h2>
+        <p class="lead">
+          Die Kleinen wachsen gerade bei uns im Wohnzimmer auf. Welche Farben dabei sind, wann sie
+          ausziehen dürfen und welche noch frei sind, erzählen wir Ihnen am liebsten persönlich.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="babies.html">Babies ansehen</a>
+          <a class="btn btn--ghost" href="kontakt.html">Unverbindlich anfragen</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     AIDA · Action – klarer Abschluss
+     ============================================================ -->
 <section class="section wrap">
   <div class="cta">
-    <h2>Fragen zu unseren Katzen?</h2>
+    <h2>Der erste Schritt: ein Gespräch</h2>
     <p>
-      Am liebsten sprechen wir persönlich mit Interessentinnen und Interessenten &ndash; per Telefon oder E-Mail.
-      Wir nehmen uns Zeit für Ihre Fragen.
+      Rufen Sie uns an oder schreiben Sie uns &ndash; wir nehmen uns Zeit, beraten ehrlich und
+      Sie entscheiden danach in Ruhe. Kein Formularzwang, keine Verpflichtung.
     </p>
     <div class="btn-row">
-      <a class="btn btn--light" href="kontakt.html">Kontakt aufnehmen</a>
-      <a class="btn btn--ghost" href="tel:{{phone-href}}">{{phone}}</a>
+      <a class="btn btn--light" href="tel:{{phone-href}}">{{phone}}</a>
+      <a class="btn btn--ghost" href="kontakt.html">Zum Kontaktformular</a>
     </div>
+    <p class="cta__reassure">Familie Lehner &middot; 9035 Grub AR &middot; Antwort in der Regel innert 1&ndash;2 Tagen</p>
   </div>
 </section>
