@@ -25,6 +25,7 @@ const readJson = async (p) => JSON.parse(await readFile(path.join(SRC, 'data', p
 const site = await readJson('site.json');
 const cats = await readJson('cats.json');
 const media = await readJson('media.json');
+const faq = await readJson('faq.json');
 
 const BUILD_YEAR = new Date().getFullYear();
 
@@ -157,6 +158,18 @@ function litterImage() {
   return picture(image, { sizes: '(min-width: 56rem) 50vw, 92vw', aspect: 'wide' });
 }
 
+function faqBlock() {
+  const items = faq
+    .map(
+      (f) => `      <details class="faq__item">
+        <summary>${esc(f.q)}</summary>
+        <div class="faq__body"><p>${esc(f.a)}</p></div>
+      </details>`
+    )
+    .join('\n');
+  return `    <div class="faq">\n${items}\n    </div>`;
+}
+
 function pairingsTable() {
   // Nur belegte Verbindungen aus den Stammbäumen unserer eigenen Katzen.
   const rows = cats
@@ -281,7 +294,20 @@ function jsonldFor(kind, extra = {}) {
     memberOf: site.memberships.map((m) => ({ '@type': 'Organization', name: m.name, alternateName: m.abbr }))
   };
 
-  const data = kind === 'organisation' ? organisation : { '@context': 'https://schema.org', ...extra };
+  const faqPage = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a }
+    }))
+  };
+
+  const data =
+    kind === 'organisation' ? organisation :
+    kind === 'faq' ? faqPage :
+    { '@context': 'https://schema.org', ...extra };
   return `<script type="application/ld+json">${JSON.stringify(data)}</script>`;
 }
 
@@ -304,6 +330,7 @@ function footerLinksHtml() {
 
 const TOKENS = {
   hero: heroBlock,
+  faq: faqBlock,
   'cats-grid': catsGrid,
   'archive-gallery': archiveGallery,
   'litter-image': litterImage,
@@ -352,6 +379,8 @@ async function render(layout, { slug, meta, body }) {
     .replace('{{nav}}', navHtml(meta.nav || slug))
     .replace('{{footerLinks}}', footerLinksHtml())
     .replace('{{announceDate}}', esc(media.litter.bornText))
+    .replace(/\{\{phoneHref\}\}/g, site.breeder.phone.replace(/\s/g, ''))
+    .replace(/\{\{phoneDisplay\}\}/g, esc(site.breeder.phoneDisplay))
     .replace('{{year}}', String(BUILD_YEAR))
     .replace('{{content}}', expand(body).trimEnd());
 

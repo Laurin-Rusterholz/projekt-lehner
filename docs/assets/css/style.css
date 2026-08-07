@@ -839,6 +839,74 @@ figure.figure { margin: 0; }
 .breadcrumb ol { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0; padding: 0; }
 .breadcrumb li + li::before { content: "›"; padding-right: 0.4rem; color: var(--brand); }
 
+/* --- 11a FAQ / Schnellleiste ------------------------------------------- */
+
+/* FAQ als Aufklappliste – funktioniert ohne JS über <details> */
+.faq { display: grid; gap: 0.7rem; }
+.faq__item {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+.faq__item summary {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.faq__item summary::-webkit-details-marker { display: none; }
+.faq__item summary::after {
+  content: "+";
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: var(--brand-tint);
+  color: var(--brand-strong);
+  font-weight: 700;
+  transition: transform 0.25s ease;
+}
+.faq__item[open] summary::after { transform: rotate(45deg); }
+.faq__item summary:hover { color: var(--brand-strong); }
+.faq__body { padding: 0 1.2rem 1.1rem; color: var(--ink-soft); }
+.faq__body p { margin: 0; }
+
+@keyframes faq-open {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: none; }
+}
+.faq__item[open] .faq__body { animation: faq-open 0.3s ease; }
+
+/* Mobile Schnellleiste: Anrufen/Anfragen, erscheint nach dem ersten Scrollen */
+.quickbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  display: flex;
+  gap: 0.6rem;
+  padding: 0.65rem 0.9rem calc(0.65rem + env(safe-area-inset-bottom, 0px));
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--line);
+  transform: translateY(110%);
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+.quickbar .btn { flex: 1; padding-block: 0.75rem; }
+.quickbar .btn--ghost { background: var(--surface); }
+.quickbar.is-visible { transform: none; }
+.quickbar[hidden] { display: none; }
+@media (min-width: 56rem) { .quickbar { display: none; } }
+
 /* --- 11b Animationen ---------------------------------------------------- */
 
 /* Sanftes Einblenden beim Scrollen. Die Klasse .reveal wird per JS gesetzt –

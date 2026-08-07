@@ -156,6 +156,9 @@ ehrlicher Ton statt Verkaufssprache.
 | **Action** | Abschluss-CTA „Der erste Schritt: ein Gespräch“ mit Telefon + Formular, hervorgehobener Kontakt-Button in der Navigation, Reassurance („unverbindlich, Antwort innert 1–2 Tagen“) |
 
 Auch Unterseiten folgen dem Muster: Jede endet in einem klaren nächsten Schritt.
+Dazu kommen eine FAQ auf der Abgabe-Seite (mit FAQ-Markup für Suchmaschinen, gepflegt in
+`src/data/faq.json`) und auf dem Handy eine Schnellleiste mit Anruf- und Anfrage-Button,
+die nach dem ersten Scrollen erscheint.
 
 ### Stilkonzept „Warmes Plüsch“
 

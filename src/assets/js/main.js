@@ -332,6 +332,36 @@
     targets.forEach((el) => io.observe(el));
   }
 
+  /* --- Mobile Schnellleiste ---------------------------------------------
+     Auf dem Handy erscheint nach dem ersten Scrollen eine Leiste mit
+     Anruf- und Anfrage-Button. Auf der Kontaktseite wäre sie doppelt,
+     dort bleibt sie aus; in Fussnähe weicht sie dem Fusszeilen-Kontakt. */
+  function initQuickbar() {
+    const bar = $('[data-quickbar]');
+    if (!bar) return;
+    if (document.body.classList.contains('page-kontakt')) return;
+
+    bar.hidden = false;
+
+    const footer = $('.site-footer');
+    let nearFooter = false;
+    let scrolled = false;
+
+    const update = () => bar.classList.toggle('is-visible', scrolled && !nearFooter);
+
+    window.addEventListener('scroll', () => {
+      scrolled = window.scrollY > 420;
+      update();
+    }, { passive: true });
+
+    if (footer && 'IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        nearFooter = entries[0].isIntersecting;
+        update();
+      }, { rootMargin: '0px 0px -40% 0px' }).observe(footer);
+    }
+  }
+
   /* --- Jahreszahl in der Fusszeile -------------------------------------- */
   function initYear() {
     const el = $('[data-current-year]');
@@ -346,5 +376,6 @@
   initAges();
   initForm();
   initReveal();
+  initQuickbar();
   initYear();
 })();
