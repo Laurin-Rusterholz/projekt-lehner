@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vorschau · Website-Neubau Brumag*CH</title>
+<meta name="description" content="Vorschau und Verwaltung zum Website-Projekt Website-Neubau Brumag*CH.">
+<!-- Eine Vorschau gehört nicht in den Suchindex: Sie ist für genau eine
+     Kundschaft bestimmt, nicht für die Öffentlichkeit. -->
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/vorschau.css">
+</head>
+<body class="zentrale" data-projekt="Website-Neubau Brumag*CH">
+<header class="leiste">
+  <div class="leiste__reihe">
+    <div class="marke">
+      <span class="marke__name">Website-Neubau Brumag*CH</span>
+      <span class="abzeichen">Vorschau zur Abnahme</span>
+      <span class="marke__kunde">Familie Lehner · Brumag*CH, Grub AR</span>
+    </div>
+  </div>
+  <div class="leiste__reihe" style="padding-top:0">
+    <div class="schalter" role="tablist" aria-label="Ansicht wählen">
+      <button class="schalter__knopf" type="button" role="tab" data-ansicht="website" aria-selected="true">Website</button>
+      <button class="schalter__knopf" type="button" role="tab" data-ansicht="verwaltung" aria-selected="false">Verwaltung</button>
+      <button class="schalter__knopf" type="button" role="tab" data-ansicht="offerte" aria-selected="false">Offerte</button>
+      <button class="schalter__knopf" type="button" role="tab" data-ansicht="agb" aria-selected="false">AGB &amp; Kunde</button>
+    </div>
+    <div class="werkzeuge">
+      <button class="knopf" type="button" id="handy" aria-pressed="false">📱 Handyansicht</button>
+      <button class="knopf" type="button" id="neuLaden">↻ Neu laden</button>
+      <a class="knopf knopf--stark" href="#wunsch" id="zumWunsch">✎ Änderungswunsch</a>
+    </div>
+  </div>
+</header>
+
+<main class="buehne">
+  <div class="haupt">
+    <p class="rahmenhinweis" id="rahmenHinweis">So sieht die neue Seite für Ihre Besucherinnen und Besucher aus.</p>
+    <div class="rahmenfeld" id="rahmenFeld" data-geraet="desktop">
+      <iframe class="rahmen" id="rahmen" title="Vorschau der Website"
+              src="/"
+              data-website="/"
+              data-verwaltung="/verwaltung/"
+              data-website-hinweis="So sieht die neue Seite für Ihre Besucherinnen und Besucher aus."
+              data-verwaltung-hinweis="Ihre Übersicht zum Projekt: Stand, Inhalte, Änderungen und Freigabe."></iframe>
+    </div>
+    <section class="tafel" data-ansicht="offerte" hidden>
+      <div class="karte">
+        <h2>Leistungsübersicht · Website-Neubau Brumag*CH</h2>
+        <p class="mini">Für Familie Lehner · Brumag*CH, Grub AR</p>
+        <div class="hinweis"><b>Unverbindlich.</b> Unverbindliche Übersicht des Leistungsumfangs. Das ist keine Offerte im rechtlichen Sinn: Es wurde nichts versendet, es besteht keine Preiszusage und es entsteht keine Rechnung. Die verbindliche Offerte erhalten Sie separat über FlowerTech.</div>
+        <p class="kosten">Kosten noch offen — nach Vereinbarung</p>
+        <h3>Was dazugehört</h3>
+        <ul class="liste">
+        <li><b>Neuaufbau aller Inhalte</b><span>15 Seiten inklusive 4 Katzenporträts, Babies-Archiv und Verpaarungstabelle</span></li>
+        <li><b>Gestaltung und Aufbau</b><span>Eigenes Stilkonzept, Bildsprache und Seitenführung statt Baukasten-Vorlage</span></li>
+        <li><b>Handy und Tablet</b><span>Durchgehend mitgedacht, mit fester Schnellleiste für Anruf und E-Mail</span></li>
+        <li><b>Bilder</b><span>Automatisch verkleinerte Varianten in mehreren Breiten für kurze Ladezeiten</span></li>
+        <li><b>Auffindbarkeit</b><span>Titel, Beschreibungen, Sitemap und strukturierte Daten je Seite</span></li>
+        <li><b>Datenschutz</b><span>Ohne Tracking, ohne Cookie-Banner, ohne externe Schriftdienste</span></li>
+        <li><b>Verwaltungsansicht</b><span>Diese Übersicht zu Stand, Inhalten, Änderungen und Freigabe</span></li>
+        </ul>
+      </div>
+      <div class="karte">
+        <h3>Wie es weitergeht</h3>
+        <ul class="liste">
+          <li><b>Vorschau anschauen</b><span>Website und Verwaltung an dieser Adresse durchgehen — auf dem Rechner und auf dem Handy.</span></li>
+          <li><b>Änderungswünsche melden</b><span>Über Ihren persönlichen FlowerTech-Kundenlink. Jeder Wunsch landet direkt am Projekt.</span></li>
+          <li><b>Nächste Fassung</b><span>Wir setzen die Wünsche um und stellen die überarbeitete Vorschau an dieselbe Adresse.</span></li>
+          <li><b>Freigabe</b><span>Erst mit Ihrer ausdrücklichen Freigabe wird die Seite auf bkh-brumag.ch aufgeschaltet.</span></li>
+        </ul>
+      </div>
+    </section>
+    <section class="tafel" data-ansicht="agb" hidden>
+      <div class="karte">
+        <h2>AGB, Vertrag und Freigabe</h2>
+        <p>AGB, Vertrag und die offizielle Freigabe stehen auf Ihrem persönlichen FlowerTech-Kundenlink. Den Link haben Sie von uns erhalten — er bleibt immer derselbe und wächst mit dem Projekt.</p>
+        <p><a class="knopf knopf--stark" href="https://flowertech.ch/" target="_blank" rel="noopener noreferrer">FlowerTech öffnen</a></p>
+        <h3>Was dort steht</h3>
+        <ul class="liste">
+          <li><b>Standard-AGB</b><span>Die zentrale Fassung, auf jedem Kundenlink dieselbe — nicht projektweise anpassbar.</span></li>
+          <li><b>Vertrag</b><span>Der Projektauftrag zum Nachlesen und Ausdrucken, sobald er freigegeben ist.</span></li>
+          <li><b>Offerte</b><span>Die verbindliche Offerte, sobald sie versendet ist. Die Übersicht hier ist keine.</span></li>
+          <li><b>Änderungswünsche</b><span>Der offizielle Weg — jeder Wunsch landet direkt an Ihrem Vorhaben.</span></li>
+        </ul>
+        <p class="mini">Diese Vorschau-Zentrale zeigt den Stand der Arbeit. Verbindlich ist, was auf
+          Ihrem Kundenlink steht.</p>
+      </div>
+    </section>
+  </div>
+
+  <aside class="spalte" aria-label="Änderungen">
+    <div class="spalte__kopf">
+      <h2>Änderungen</h2>
+      <p class="mini" id="zaehler">8 Einträge</p>
+      <div class="filter" role="group" aria-label="Nach Bereich filtern">
+        <button class="filter__knopf" type="button" data-filter="alle" aria-pressed="true">Alle</button>
+        <button class="filter__knopf" type="button" data-filter="website" aria-pressed="false">Website</button>
+        <button class="filter__knopf" type="button" data-filter="verwaltung" aria-pressed="false">Verwaltung</button>
+      </div>
+    </div>
+    <ul class="spalte__liste">
+      <li class="eintrag" data-bereich="website">
+        <div class="eintrag__kopf">
+          <span class="stand stand--umgesetzt">umgesetzt</span>
+          <span class="eintrag__titel">FAQ mit Aufklapp-Animation und mobile Schnellleiste</span>
+        </div>
+        <p class="eintrag__detail">Sieben häufige Fragen zum Aufklappen; auf dem Handy eine feste Leiste mit Anruf und E-Mail.</p>
+        <p class="eintrag__detail"><span class="marker">Website</span>
+          <span class="marker">Projektverlauf</span>
+          <span class="marker">07.08.2026</span></p>
+      </li>
+      <li class="eintrag" data-bereich="website">
+        <div class="eintrag__kopf">
+          <span class="stand stand--umgesetzt">umgesetzt</span>
+          <span class="eintrag__titel">Handy-Optimierung, Bildpipeline und neue Schrift</span>
+        </div>
+        <p class="eintrag__detail">Bilder werden beim Veröffentlichen verkleinert (WebP/JPEG, mehrere Breiten) — dadurch lädt die Seite auf dem Handy deutlich schneller.</p>
+        <p class="eintrag__detail"><span class="marker">Website</span>
+          <span class="marker">Projektverlauf</span>
+          <span class="marker">06.08.2026</span></p>
+      </li>
+      <li class="eintrag" data-bereich="website">
+        <div class="eintrag__kopf">
+          <span class="stand stand--umgesetzt">umgesetzt</span>
+          <span class="eintrag__titel">Aufbau nach AIDA und Stilkonzept „Warmes Plüsch“</span>
+        </div>
+        <p class="eintrag__detail">Reihenfolge und Bildsprache folgen einem klaren Konzept statt der alten Seitenstruktur.</p>
+        <p class="eintrag__detail"><span class="marker">Website</span>
+          <span class="marker">Projektverlauf</span>
+          <span class="marker">06.08.2026</span></p>
+      </li>
+      <li class="eintrag" data-bereich="website">
+        <div class="eintrag__kopf">
+          <span class="stand stand--umgesetzt">umgesetzt</span>
+          <span class="eintrag__titel">Neubau von bkh-brumag.ch als statische Seite</span>
+        </div>
+        <p class="eintrag__detail">Alle Inhalte der bestehenden Seite übernommen und neu aufgebaut: 15 Seiten, 4 Katzenporträts.</p>
+        <p class="eintrag__detail"><span class="marker">Website</span>
+          <span class="marker">Projektverlauf</span>
+          <span class="marker">06.08.2026</span></p>
+      </li>
+      <li class="eintrag" data-bereich="verwaltung">
+        <div class="eintrag__kopf">
+          <span class="stand stand--umgesetzt">umgesetzt</span>
+          <span class="eintrag__titel">Vorschau-Zentrale und Verwaltungsansicht</span>
+        </div>
+        <p class="eintrag__detail">Diese Oberfläche: Website und Verwaltung an einer Adresse, mit Offerte, Änderungsleiste und Weg zu AGB und Freigabe.</p>
+        <p class="eintrag__detail"><span class="marker">Verwaltung</span>
+          <span class="marker">Projektverlauf</span>
+          <span class="marker">10.08.2026</span></p>
+      </li>
+      <li class="eintrag" data-bereich="website">
+        <div class="eintrag__kopf">
+          <span class="stand stand--offen">offen</span>
+          <span class="eintrag__titel">Ihre Rückmeldung zur Vorschau</span>
+        </div>
+        <p class="eintrag__detail">Schauen Sie die Vorschau in Ruhe an. Was Ihnen auffällt, halten wir hier fest und setzen es in der nächsten Fassung um.</p>
+        <p class="eintrag__detail"><span class="marker">Website</span>
+          <span class="marker">wartet auf Sie</span></p>
+      </li>
+      <li class="eintrag" data-bereich="website">
+        <div class="eintrag__kopf">
+          <span class="stand stand--offen">offen</span>
+          <span class="eintrag__titel">Texte gegenlesen und ergänzen</span>
+        </div>
+        <p class="eintrag__detail">Die Texte stammen aus der bestehenden Seite. Wo Sie etwas anders formulieren möchten, ändern wir es.</p>
+        <p class="eintrag__detail"><span class="marker">Website</span>
+          <span class="marker">wartet auf Sie</span></p>
+      </li>
+      <li class="eintrag" data-bereich="verwaltung">
+        <div class="eintrag__kopf">
+          <span class="stand stand--offen">offen</span>
+          <span class="eintrag__titel">Domain-Umstellung auf bkh-brumag.ch</span>
+        </div>
+        <p class="eintrag__detail">Erst nach Ihrer Freigabe und in Absprache. Bis dahin bleibt die bestehende Seite unverändert online.</p>
+        <p class="eintrag__detail"><span class="marker">Verwaltung</span>
+          <span class="marker">nach Ihrer Freigabe</span></p>
+      </li>
+    </ul>
+    <div class="spalte__fuss">
+      <label for="wunsch"><b>Etwas soll anders sein?</b></label>
+      <p class="mini" style="margin:4px 0 7px">Kurz aufschreiben, kopieren und auf Ihrem Kundenlink absenden —
+        dort geht der Wunsch an Ihr Vorhaben. Diese Seite verschickt selbst nichts.</p>
+      <textarea class="feld" id="wunsch" maxlength="1500"
+                placeholder="Zum Beispiel: Auf der Startseite bitte ein anderes Bild."></textarea>
+      <button class="knopf knopf--voll" type="button" id="wunschKopieren">In die Zwischenablage kopieren</button>
+      <a class="knopf knopf--voll knopf--leise" href="https://flowertech.ch/"
+         target="_blank" rel="noopener noreferrer">Kundenlink öffnen und absenden</a>
+      <p class="rueckmeldung" id="wunschStatus" role="status" aria-live="polite"></p>
+    </div>
+  </aside>
+</main>
+
+<script src="/assets/js/vorschau.js"></script>
+</body>
+</html>

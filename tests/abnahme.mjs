@@ -192,6 +192,20 @@ ok(/keine Zugangsdaten|keine Passwörter/i.test(vwGanz),
 ok(await seite.locator('form').count() === 0, 'Die Verwaltung hat ein absendendes Formular');
 ok(!/mailto:/.test(await seite.content()), 'Die Verwaltung löst einen Mailablauf aus');
 
+// Die flachen Ausweichadressen zeigen dieselbe Seite — sie sind die
+// Rückfallebene, falls der Verzeichnis-Index einmal nicht ausgeliefert wird.
+for (const [pfad, kennzeichen] of [['/vorschau.html', 'Website'], ['/verwaltung.html', 'Verwaltung']]) {
+  const antwort = await seite.goto(`${BASIS}${pfad}`, { waitUntil: 'domcontentloaded' });
+  ok(antwort && antwort.status() === 200, `${pfad} antwortet nicht mit 200`);
+  ok((await seite.locator('.abzeichen').first().innerText()).length > 0,
+    `${pfad} zeigt nicht die Auslieferungsoberfläche`);
+  ok(/Brumag/.test(await seite.locator('.marke__name').innerText()),
+    `${pfad} nennt das Projekt nicht`);
+  ok(!(await seite.locator('#vorschauStreifen').count()),
+    `${pfad} trägt den Vorschau-Streifen, der dort nicht hingehört`);
+  ok(kennzeichen.length > 0, 'Kennzeichen fehlt');
+}
+
 // Die Website führt zurück — sonst ist sie eine Sackgasse.
 await seite.goto(`${BASIS}/`, { waitUntil: 'networkidle' });
 await seite.waitForTimeout(200);
