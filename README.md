@@ -232,3 +232,27 @@ Verlinkung beider Oberflächen und die Zusicherung, dass keine Zugangsdaten
 dastehen. Playwright steht bewusst **nicht** in `package.json` — der
 Netlify-Build soll schlank bleiben; für die Abnahme genügt ein lokal
 vorhandenes Playwright.
+
+### Zwei Veröffentlichungswege — und ein Nachweis
+
+| Weg | Adresse | Nachweis |
+| --- | --- | --- |
+| GitHub Pages | `…github.io/projekt-lehner/vorschau/` | Actions-Lauf im Repository, mit Ergebnis und Adresse |
+| Netlify | eigene Domain, Basispfad leer | Netlify-Dashboard |
+
+Der Pages-Weg (`.github/workflows/pages.yml`) baut mit `BASIS_PFAD` — unter
+Pages liegt das Projekt in einem Unterverzeichnis. Die Website selbst verlinkt
+durchgehend relativ und braucht das nicht; die Auslieferungsseiten verlinken
+absolut und bekommen den Basispfad vorangestellt.
+
+**Deploy-Marker.** `/stand-website.txt` und `/stand-vorschau.txt` sagen, welcher
+Stand wirklich ausgeliefert wird — Commit, Zweig, Zeitpunkt und welcher
+Build-Schritt sie geschrieben hat:
+
+* beide da → der ganze Build ist draussen
+* nur `stand-website.txt` → `build-vorschau.mjs` lief nicht
+* keiner → dieser Build wurde nie veröffentlicht
+
+Ohne sie liess sich von aussen nicht unterscheiden, ob eine fehlende Seite an
+einem alten Deploy liegt oder an der Auslieferung — man sah nur eine 404 und
+konnte raten. Genau das hat dieses Projekt zwei Anläufe gekostet.

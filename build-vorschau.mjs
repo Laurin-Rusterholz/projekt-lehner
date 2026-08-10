@@ -27,6 +27,14 @@ const root = path.dirname(fileURLToPath(import.meta.url));
 const SRC = path.join(root, 'src');
 const OUT = path.join(root, 'docs');
 
+/* Der Basispfad. Leer auf einer eigenen Domain (Netlify), unter GitHub Pages
+ * dagegen "/projekt-lehner". Die Website selbst verlinkt durchgehend relativ
+ * und braucht ihn nicht — diese Auslieferungsseiten verlinken absolut, damit
+ * sie aus jedem Unterverzeichnis heraus stimmen, und deshalb bekommen sie ihn
+ * hier vorangestellt. */
+const BASIS = String(process.env.BASIS_PFAD || '').replace(/\/+$/, '');
+const u = (pfad) => BASIS + pfad;
+
 const projekt = JSON.parse(await readFile(path.join(SRC, 'data', 'projekt.json'), 'utf8'));
 const site = JSON.parse(await readFile(path.join(SRC, 'data', 'site.json'), 'utf8'));
 
@@ -52,8 +60,8 @@ function huelle({ titel, bodyClass, body, dataProjekt = '' }) {
 <!-- Eine Vorschau gehört nicht in den Suchindex: Sie ist für genau eine
      Kundschaft bestimmt, nicht für die Öffentlichkeit. -->
 <meta name="robots" content="noindex, nofollow, noarchive">
-<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/css/vorschau.css">
+<link rel="icon" href="${u('/assets/img/favicon.svg')}" type="image/svg+xml">
+<link rel="stylesheet" href="${u('/assets/css/vorschau.css')}">
 </head>
 <body class="${esc(bodyClass)}"${dataProjekt ? ` data-projekt="${esc(dataProjekt)}"` : ''}>
 ${body}
@@ -156,9 +164,9 @@ function zentrale() {
     <p class="rahmenhinweis" id="rahmenHinweis">${esc(w.hinweis)}</p>
     <div class="rahmenfeld" id="rahmenFeld" data-geraet="desktop">
       <iframe class="rahmen" id="rahmen" title="Vorschau der Website"
-              src="${esc(w.pfad)}"
-              data-website="${esc(w.pfad)}"
-              data-verwaltung="${esc(v.pfad)}"
+              src="${esc(u(w.pfad))}"
+              data-website="${esc(u(w.pfad))}"
+              data-verwaltung="${esc(u(v.pfad))}"
               data-website-hinweis="${esc(w.hinweis)}"
               data-verwaltung-hinweis="${esc(v.hinweis)}"></iframe>
     </div>
@@ -193,7 +201,7 @@ ${projekt.aenderungen.map(aenderungsEintrag).join('\n')}
   </aside>
 </main>
 
-<script src="/assets/js/vorschau.js"></script>`;
+<script src="${u('/assets/js/vorschau.js')}"></script>`;
 
   return huelle({
     titel: `Vorschau · ${projekt.projekt}`,
@@ -208,7 +216,7 @@ ${projekt.aenderungen.map(aenderungsEintrag).join('\n')}
 function verwaltung() {
   const seiten = projekt.seiten
     .map(
-      (s) => `        <li><b><a href="${esc(s.pfad)}" target="_blank" rel="noopener">${esc(s.titel)}</a></b>
+      (s) => `        <li><b><a href="${esc(u(s.pfad))}" target="_blank" rel="noopener">${esc(s.titel)}</a></b>
           <span>${esc(s.zweck)} · <span class="stand stand--umgesetzt">${esc(s.stand)}</span></span></li>`
     )
     .join('\n');
@@ -243,8 +251,8 @@ function verwaltung() {
       <span class="marke__kunde">${esc(projekt.kunde)}</span>
     </div>
     <div class="werkzeuge">
-      <a class="knopf" href="/vorschau/">← Zur Vorschau-Zentrale</a>
-      <a class="knopf knopf--stark" href="/" target="_blank" rel="noopener">Website ansehen</a>
+      <a class="knopf" href="${u('/vorschau/')}">← Zur Vorschau-Zentrale</a>
+      <a class="knopf knopf--stark" href="${u('/')}" target="_blank" rel="noopener">Website ansehen</a>
     </div>
   </div>
 </header>
@@ -269,9 +277,9 @@ function verwaltung() {
     <section class="karte">
       <h2>Veröffentlichte Vorschau</h2>
       <p class="mini">Diese drei Adressen gehören zusammen. Die erste ist die, die Sie brauchen.</p>
-      <p><b>Vorschau-Zentrale</b><a class="adresse" href="/vorschau/">/vorschau/</a></p>
-      <p><b>Website</b><a class="adresse" href="/">/</a></p>
-      <p><b>Verwaltung</b><a class="adresse" href="/verwaltung/">/verwaltung/</a></p>
+      <p><b>Vorschau-Zentrale</b><a class="adresse" href="${u('/vorschau/')}">${esc(u('/vorschau/'))}</a></p>
+      <p><b>Website</b><a class="adresse" href="${u('/')}">${esc(u('/') || '/')}</a></p>
+      <p><b>Verwaltung</b><a class="adresse" href="${u('/verwaltung/')}">${esc(u('/verwaltung/'))}</a></p>
       <p class="mini">Die Adressen bleiben gleich. Bei jeder neuen Fassung steht an derselben Stelle
         der neue Stand — Sie müssen nichts Neues merken.</p>
     </section>
@@ -330,8 +338,8 @@ ${hinweise}
 const STREIFEN = `<div id="vorschauStreifen" hidden>
   <span><b>Vorschau</b> · Website</span>
   <span class="vs-sp"></span>
-  <a href="/vorschau/">Vorschau-Zentrale</a>
-  <a href="/verwaltung/">Verwaltung</a>
+  <a href="${u('/vorschau/')}">Vorschau-Zentrale</a>
+  <a href="${u('/verwaltung/')}">Verwaltung</a>
 </div>
 <style>
 #vorschauStreifen{position:fixed;left:0;right:0;bottom:0;z-index:9999;display:flex;
@@ -398,6 +406,24 @@ await writeFile(path.join(OUT, 'vorschau.html'), zentraleHtml, 'utf8');
 await writeFile(path.join(OUT, 'verwaltung.html'), verwaltungHtml, 'utf8');
 
 const mitStreifen = await streifenEinbauen();
+
+/* Der zweite Marker. Zusammen ergeben die beiden eine klare Leiter:
+     beide da        -> der ganze Build ist draussen
+     nur website     -> build-vorschau.mjs lief nicht (altes Build-Kommando)
+     keiner          -> dieser Build wurde nie veroeffentlicht */
+await writeFile(
+  path.join(OUT, 'stand-vorschau.txt'),
+  [
+    'Schritt      : build-vorschau.mjs (Vorschau-Zentrale)',
+    `Basispfad    : ${BASIS || '(keiner)'}`,
+    `Adressen     : ${u('/vorschau/')}  ${u('/verwaltung/')}`,
+    `Commit       : ${process.env.COMMIT_REF || process.env.GITHUB_SHA || 'unbekannt'}`,
+    `Zweig        : ${process.env.BRANCH || process.env.GITHUB_REF_NAME || 'unbekannt'}`,
+    `Gebaut       : ${new Date().toISOString()}`,
+    ''
+  ].join('\n'),
+  'utf8'
+);
 
 console.log('✓ Vorschau-Zentrale und Verwaltung erzeugt');
 console.log(`  /vorschau/  /verwaltung/  (auch /vorschau.html  /verwaltung.html)`);

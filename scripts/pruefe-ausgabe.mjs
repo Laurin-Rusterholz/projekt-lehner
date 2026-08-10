@@ -19,6 +19,10 @@ import { fileURLToPath } from 'node:url';
 
 const OUT = path.join(path.dirname(path.dirname(fileURLToPath(import.meta.url))), 'docs');
 
+// Denselben Basispfad wie der Build: Unter GitHub Pages liegt alles in einem
+// Unterverzeichnis, die erwarteten Verweise verschieben sich mit.
+const BASIS = String(process.env.BASIS_PFAD || '').replace(/\/+$/, '');
+
 const da = async (p) => { try { await access(path.join(OUT, p)); return true; } catch { return false; } };
 
 // Was nach dem Bauen dastehen MUSS, damit die Rückgabe an die Kundschaft hält.
@@ -43,7 +47,7 @@ const INHALT = [
   ['vorschau/index.html', /data-ansicht="agb"/, 'die AGB-Ansicht'],
   ['vorschau/index.html', /filter__knopf/, 'die Filter der Änderungsleiste'],
   ['verwaltung/index.html', /Website-Status/, 'der Website-Status in der Verwaltung'],
-  ['verwaltung/index.html', /href="\/vorschau\/"/, 'der Weg zurück zur Zentrale'],
+  ['verwaltung/index.html', new RegExp(`href="${BASIS}/vorschau/"`), 'der Weg zurück zur Zentrale'],
   ['index.html', /vorschauStreifen/, 'der Vorschau-Streifen auf der Website']
 ];
 
