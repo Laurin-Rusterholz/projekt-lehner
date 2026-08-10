@@ -23,6 +23,11 @@
 import { chromium } from 'playwright';
 
 const BASIS = process.env.BASIS || 'http://127.0.0.1:4173';
+// Unter GitHub Pages liegt alles in einem Unterverzeichnis. Die erwarteten
+// Verweise verschieben sich damit mit — der Test rechnet den Praefix aus der
+// Basis-Adresse aus, statt ihn zu raten.
+const PRAEFIX = new URL(BASIS).pathname.replace(/\/+$/, '');
+const w = (pfad) => PRAEFIX + pfad;
 const CHROME = process.env.CHROME_PFAD || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
 
 let geprueft = 0;
@@ -177,8 +182,8 @@ ok(await seite.locator('.spalte__fuss a[href*="flowertech.ch"]').count() > 0,
 await seite.goto(`${BASIS}/verwaltung/`, { waitUntil: 'networkidle' });
 ok((await seite.locator('.abzeichen').innerText()).includes('Verwaltung'),
   'Die Verwaltung ist nicht als Verwaltung bezeichnet');
-ok(await seite.locator('a[href="/vorschau/"]').count() > 0, 'Die Verwaltung führt nicht zur Zentrale');
-ok(await seite.locator('a[href="/"]').count() > 0, 'Die Verwaltung führt nicht zur Website');
+ok(await seite.locator(`a[href="${w('/vorschau/')}"]`).count() > 0, 'Die Verwaltung führt nicht zur Zentrale');
+ok(await seite.locator(`a[href="${w('/') || '/'}"]`).count() > 0, 'Die Verwaltung führt nicht zur Website');
 
 const vwGanz = await seite.locator('body').innerText();
 // Geprüft wird die PREISGABE, nicht das Wort: „keine Zugangsdaten" ist genau
@@ -210,9 +215,9 @@ for (const [pfad, kennzeichen] of [['/vorschau.html', 'Website'], ['/verwaltung.
 await seite.goto(`${BASIS}/`, { waitUntil: 'networkidle' });
 await seite.waitForTimeout(200);
 ok(await seite.locator('#vorschauStreifen').isVisible(), 'Der Website fehlt der Vorschau-Streifen');
-ok(await seite.locator('#vorschauStreifen a[href="/vorschau/"]').count() > 0,
+ok(await seite.locator(`#vorschauStreifen a[href="${w('/vorschau/')}"]`).count() > 0,
   'Die Website führt nicht zur Vorschau-Zentrale');
-ok(await seite.locator('#vorschauStreifen a[href="/verwaltung/"]').count() > 0,
+ok(await seite.locator(`#vorschauStreifen a[href="${w('/verwaltung/')}"]`).count() > 0,
   'Die Website führt nicht zur Verwaltung');
 ok(/Brumag/i.test(await seite.locator('body').innerText()), 'Die Website zeigt ihren Inhalt nicht');
 
