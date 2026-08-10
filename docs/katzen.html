@@ -252,5 +252,37 @@
 </div>
 
 <script src="assets/js/main.js" defer></script>
+<div id="vorschauStreifen" hidden>
+  <span><b>Vorschau</b> · Website</span>
+  <span class="vs-sp"></span>
+  <a href="/vorschau/">Vorschau-Zentrale</a>
+  <a href="/verwaltung/">Verwaltung</a>
+</div>
+<style>
+#vorschauStreifen{position:fixed;left:0;right:0;bottom:0;z-index:9999;display:flex;
+  align-items:center;gap:12px;padding:8px 14px;background:#1c2530;color:#f5f7fa;
+  font:600 13px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  box-shadow:0 -2px 12px rgba(0,0,0,.22)}
+/* Muss ausdrücklich dastehen: Die ID-Regel oben schlägt sonst das
+   hidden-Attribut, und der Streifen stünde auch im Rahmenfenster der
+   Zentrale — dort, wo die dunkle Leiste schon darüber liegt. */
+#vorschauStreifen[hidden]{display:none}
+#vorschauStreifen .vs-sp{flex:1 1 auto}
+#vorschauStreifen a{color:#fff;background:#47586a;border-radius:7px;padding:7px 11px;
+  text-decoration:none}
+#vorschauStreifen a:hover{background:#6f8599}
+@media print{#vorschauStreifen{display:none}}
+</style>
+<script>
+(function(){
+  // Nur ausserhalb des Rahmenfensters — in der Zentrale gibt es die Leiste schon.
+  try { if (window.self !== window.top) return; } catch (e) { return; }
+  var s = document.getElementById('vorschauStreifen');
+  if (!s) return;
+  s.hidden = false;
+  // Platz schaffen, damit der Streifen nichts am Seitenende verdeckt.
+  document.body.style.paddingBottom = '52px';
+})();
+</script>
 </body>
 </html>

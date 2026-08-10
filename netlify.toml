@@ -3,7 +3,10 @@
 # Ohne diese Angabe veröffentlicht Netlify das Repo-Root und zeigt nur 404.
 
 [build]
-  command = "node scripts/fetch-images.mjs && node build.mjs"
+  # Drei Schritte: Bilder holen, Website bauen, Vorschau-Rahmen darumlegen.
+  # build-vorschau.mjs erzeugt /vorschau/ und /verwaltung/ und legt den
+  # Vorschau-Streifen in die fertigen Seiten — es läuft deshalb zuletzt.
+  command = "node scripts/fetch-images.mjs && node build.mjs && node build-vorschau.mjs"
   publish = "docs"
 
 [build.environment]

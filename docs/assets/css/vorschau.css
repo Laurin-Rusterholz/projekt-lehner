@@ -1,0 +1,375 @@
+/*
+ * Die Vorschau-Zentrale — die eine Adresse, an der die Kundschaft ihr Projekt
+ * anschaut. Sie ist bewusst NICHT im Stil der Website gehalten: Sie ist der
+ * Rahmen, nicht das Produkt. Dunkle Leiste oben, grosse echte Vorschau in der
+ * Mitte, Änderungen rechts.
+ *
+ * Eigenständige Datei ohne Abhängigkeit zum Seiten-CSS — die Website in der
+ * Vorschau soll aussehen wie später im Netz, unbeeinflusst von diesem Rahmen
+ * (sie steckt deshalb in einem eigenen Rahmenfenster).
+ */
+
+:root {
+  --bar: #1c2530;
+  --bar-2: #263243;
+  --line: #33415a;
+  --ink: #f5f7fa;
+  --ink-dim: #a9b6c8;
+  --page: #eef1f5;
+  --card: #ffffff;
+  --card-line: #dde3ec;
+  --text: #1f2733;
+  --text-dim: #5d6b7d;
+  --akzent: #47586a;
+  --akzent-hell: #6f8599;
+  --ok: #2f7d54;
+  --offen: #9a6b12;
+  --radius: 12px;
+  --schrift: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font: 15px/1.55 var(--schrift);
+  color: var(--text);
+  background: var(--page);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ───────────────────────────── Obere Leiste ─────────────────────────────── */
+
+.leiste {
+  background: var(--bar);
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+  flex: 0 0 auto;
+}
+
+.leiste__reihe {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 10px 16px;
+}
+
+.marke { display: flex; align-items: baseline; gap: 10px; min-width: 0; }
+.marke__name { font-weight: 700; font-size: 16px; letter-spacing: .2px; white-space: nowrap; }
+.marke__kunde { color: var(--ink-dim); font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.abzeichen {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: var(--akzent);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Die Umschalter: Website / Verwaltung / Offerte / AGB */
+.schalter {
+  display: flex;
+  gap: 2px;
+  background: var(--bar-2);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 3px;
+  flex-wrap: wrap;
+}
+
+.schalter__knopf {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--ink-dim);
+  font: 600 14px/1 var(--schrift);
+  padding: 8px 14px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.schalter__knopf:hover { color: var(--ink); }
+.schalter__knopf[aria-selected="true"] { background: var(--ink); color: var(--bar); }
+.schalter__knopf:focus-visible { outline: 2px solid var(--akzent-hell); outline-offset: 2px; }
+
+.werkzeuge { display: flex; align-items: center; gap: 8px; margin-left: auto; flex-wrap: wrap; }
+
+.knopf {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  background: var(--bar-2);
+  color: var(--ink);
+  font: 600 13px/1 var(--schrift);
+  padding: 9px 13px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.knopf:hover { background: #2f3d52; }
+.knopf:focus-visible { outline: 2px solid var(--akzent-hell); outline-offset: 2px; }
+.knopf[aria-pressed="true"] { background: var(--ink); color: var(--bar); border-color: var(--ink); }
+.knopf--stark { background: var(--akzent); border-color: var(--akzent); color: #fff; }
+.knopf--stark:hover { background: var(--akzent-hell); }
+
+/* ───────────────────────────── Aufbau ───────────────────────────────────── */
+
+.buehne {
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  min-height: 0;
+}
+
+.haupt {
+  min-width: 0;
+  min-height: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--page);
+}
+
+.rahmenhinweis {
+  padding: 7px 16px;
+  font-size: 13px;
+  color: var(--text-dim);
+  background: #e4e9f0;
+  border-bottom: 1px solid var(--card-line);
+}
+
+.rahmenfeld {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  justify-content: center;
+  padding: 14px;
+  overflow: auto;
+}
+
+/* Das eigentliche Vorschaufenster: die echte Seite, nicht ein Bild davon. */
+.rahmen {
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--card-line);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: 0 2px 14px rgba(20, 30, 45, .08);
+}
+
+.rahmenfeld[data-geraet="handy"] .rahmen {
+  width: 390px;
+  max-width: 100%;
+  border-radius: 22px;
+}
+
+/* Panels (Offerte, AGB) liegen im selben Hauptbereich wie die Vorschau. */
+.tafel {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  padding: 18px;
+}
+
+.tafel[hidden], .rahmenfeld[hidden], .rahmenhinweis[hidden] { display: none; }
+
+.karte {
+  background: var(--card);
+  border: 1px solid var(--card-line);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin: 0 auto 14px;
+  max-width: 860px;
+}
+
+.karte h2 { margin: 0 0 4px; font-size: 19px; }
+.karte h3 { margin: 18px 0 6px; font-size: 15px; }
+.karte p { margin: 0 0 10px; }
+.mini { color: var(--text-dim); font-size: 13px; }
+
+.hinweis {
+  background: #fdf6e6;
+  border: 1px solid #e8d9ae;
+  border-radius: 9px;
+  padding: 11px 13px;
+  margin: 0 0 14px;
+  font-size: 14px;
+}
+
+.kosten {
+  display: inline-block;
+  background: #eef2f7;
+  border: 1px solid var(--card-line);
+  border-radius: 8px;
+  padding: 9px 13px;
+  font-weight: 700;
+}
+
+.liste { list-style: none; margin: 0; padding: 0; }
+
+.liste li {
+  display: grid;
+  grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
+  gap: 4px 16px;
+  padding: 10px 0;
+  border-top: 1px solid var(--card-line);
+}
+
+.liste li:first-child { border-top: 0; }
+.liste b { font-weight: 650; }
+
+@media (max-width: 40rem) {
+  .liste li { grid-template-columns: 1fr; }
+}
+
+/* In den schmalen Karten des Gitters ist für zwei Spalten kein Platz — dort
+   bricht der Text sonst auf ein Wort pro Zeile. Sie stapeln deshalb immer. */
+.gitter .liste li { grid-template-columns: 1fr; gap: 2px; }
+
+/* ───────────────────────────── Änderungsleiste ──────────────────────────── */
+
+.spalte {
+  border-left: 1px solid var(--card-line);
+  background: var(--card);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.spalte__kopf { padding: 14px 16px 10px; border-bottom: 1px solid var(--card-line); }
+.spalte__kopf h2 { margin: 0 0 3px; font-size: 16px; }
+
+.filter { display: flex; gap: 6px; margin-top: 10px; }
+
+.filter__knopf {
+  appearance: none;
+  border: 1px solid var(--card-line);
+  background: #f4f6fa;
+  color: var(--text-dim);
+  font: 600 13px/1 var(--schrift);
+  padding: 7px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.filter__knopf[aria-pressed="true"] { background: var(--akzent); border-color: var(--akzent); color: #fff; }
+.filter__knopf:focus-visible { outline: 2px solid var(--akzent-hell); outline-offset: 2px; }
+
+.spalte__liste { flex: 1 1 auto; overflow: auto; padding: 6px 16px 16px; margin: 0; list-style: none; }
+
+.eintrag { padding: 12px 0; border-bottom: 1px solid var(--card-line); }
+.eintrag[hidden] { display: none; }
+.eintrag__kopf { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.eintrag__titel { font-weight: 650; }
+.eintrag__detail { color: var(--text-dim); font-size: 13.5px; margin: 5px 0 0; }
+
+.stand {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.stand--umgesetzt { background: #e5f3ea; color: var(--ok); }
+.stand--offen { background: #fbf1dc; color: var(--offen); }
+
+.marker {
+  font-size: 12px;
+  color: var(--text-dim);
+  border: 1px solid var(--card-line);
+  border-radius: 999px;
+  padding: 2px 8px;
+  white-space: nowrap;
+}
+
+.spalte__fuss { border-top: 1px solid var(--card-line); padding: 13px 16px; background: #f7f9fc; }
+
+.feld {
+  width: 100%;
+  font: 14px/1.5 var(--schrift);
+  color: var(--text);
+  border: 1px solid var(--card-line);
+  border-radius: 8px;
+  padding: 9px 11px;
+  resize: vertical;
+  min-height: 74px;
+  background: #fff;
+}
+
+.feld:focus-visible { outline: 2px solid var(--akzent-hell); outline-offset: 1px; }
+
+.knopf--voll {
+  width: 100%;
+  justify-content: center;
+  margin-top: 8px;
+  background: var(--akzent);
+  border-color: var(--akzent);
+  color: #fff;
+}
+
+.knopf--voll:hover { background: var(--akzent-hell); }
+
+.knopf--leise { background: #eef2f7; color: var(--text); border-color: var(--card-line); }
+.knopf--leise:hover { background: #e2e8f1; }
+
+.rueckmeldung { font-size: 13px; margin: 8px 0 0; min-height: 1.2em; color: var(--ok); font-weight: 600; }
+
+/* ───────────────────────────── Verwaltungsseite ─────────────────────────── */
+
+.seite { max-width: 980px; margin: 0 auto; padding: 20px 18px 40px; }
+.seite h1 { font-size: 23px; margin: 0 0 4px; }
+
+.gitter { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.gitter .karte { margin: 0; max-width: none; }
+
+.kennzahl { display: flex; align-items: baseline; gap: 8px; margin: 0 0 6px; }
+.kennzahl strong { font-size: 22px; }
+
+.reihe {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 0;
+  border-top: 1px solid var(--card-line);
+}
+
+.reihe:first-of-type { border-top: 0; }
+
+.adresse {
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  background: #f4f6fa;
+  border: 1px solid var(--card-line);
+  border-radius: 8px;
+  padding: 9px 11px;
+  word-break: break-all;
+  color: var(--text);
+}
+
+a { color: var(--akzent); }
+.karte a { color: #35485d; }
+
+/* ───────────────────────────── Schmale Fenster ──────────────────────────── */
+
+@media (max-width: 62rem) {
+  .buehne { grid-template-columns: minmax(0, 1fr); }
+  .spalte { border-left: 0; border-top: 1px solid var(--card-line); max-height: 62vh; }
+  .haupt { min-height: 58vh; }
+  .werkzeuge { margin-left: 0; width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
