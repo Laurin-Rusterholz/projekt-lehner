@@ -110,13 +110,20 @@ ${projekt.freigabe.map((f) => `          <li><b>${esc(f.schritt)}</b><span>${esc
     </section>`;
 }
 
+/* Der projektspezifische Kundenlink. `customerPortalUrl` ist die Adresse, die
+ * die Kundschaft wirklich bekommen hat — mit ihrem Einladungstoken. Nur dort
+ * stehen AGB, Vertrag und der offizielle Weg fuer Aenderungswuensche; die
+ * blosse Startseite von FlowerTech fuehrt ins Leere und war genau der Fehler.
+ * Fehlt sie, bleibt die allgemeine Adresse als Rueckfall. */
+const kundenlink = () => projekt.kundenbereich.customerPortalUrl || projekt.kundenbereich.url;
+
 function agbTafel() {
   const k = projekt.kundenbereich;
   return `    <section class="tafel" data-ansicht="agb" hidden>
       <div class="karte">
         <h2>AGB, Vertrag und Freigabe</h2>
         <p>${esc(k.hinweis)}</p>
-        <p><a class="knopf knopf--stark" href="${esc(k.url)}" target="_blank" rel="noopener noreferrer">${esc(k.anbieter)} öffnen</a></p>
+        <p><a class="knopf knopf--stark" href="${esc(kundenlink())}" target="_blank" rel="noopener noreferrer">Ihren ${esc(k.anbieter)}-Kundenlink öffnen</a></p>
         <h3>Was dort steht</h3>
         <ul class="liste">
           <li><b>Standard-AGB</b><span>Die zentrale Fassung, auf jedem Kundenlink dieselbe — nicht projektweise anpassbar.</span></li>
@@ -194,7 +201,7 @@ ${projekt.aenderungen.map(aenderungsEintrag).join('\n')}
       <textarea class="feld" id="wunsch" maxlength="1500"
                 placeholder="Zum Beispiel: Auf der Startseite bitte ein anderes Bild."></textarea>
       <button class="knopf knopf--voll" type="button" id="wunschKopieren">In die Zwischenablage kopieren</button>
-      <a class="knopf knopf--voll knopf--leise" href="${esc(projekt.kundenbereich.url)}"
+      <a class="knopf knopf--voll knopf--leise" href="${esc(kundenlink())}"
          target="_blank" rel="noopener noreferrer">Kundenlink öffnen und absenden</a>
       <p class="rueckmeldung" id="wunschStatus" role="status" aria-live="polite"></p>
     </div>
@@ -291,7 +298,7 @@ ${schritte}
       </ul>
       <p class="mini">Der offizielle Weg für Wünsche und die Freigabe läuft über Ihren
         ${esc(projekt.kundenbereich.anbieter)}-Kundenlink.</p>
-      <p><a class="knopf knopf--stark" href="${esc(projekt.kundenbereich.url)}" target="_blank" rel="noopener noreferrer">Kundenlink öffnen</a></p>
+      <p><a class="knopf knopf--stark" href="${esc(kundenlink())}" target="_blank" rel="noopener noreferrer">Kundenlink öffnen</a></p>
     </section>
   </div>
 

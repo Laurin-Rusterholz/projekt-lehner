@@ -48,7 +48,10 @@ const INHALT = [
   ['vorschau/index.html', /filter__knopf/, 'die Filter der Änderungsleiste'],
   ['verwaltung/index.html', /Website-Status/, 'der Website-Status in der Verwaltung'],
   ['verwaltung/index.html', new RegExp(`href="${BASIS}/vorschau/"`), 'der Weg zurück zur Zentrale'],
-  ['index.html', /vorschauStreifen/, 'der Vorschau-Streifen auf der Website']
+  ['index.html', /vorschauStreifen/, 'der Vorschau-Streifen auf der Website'],
+  // Der Kundenlink muss der projektspezifische sein — mit Einladungstoken.
+  ['vorschau/index.html', /fragebogen\.html\?e=[A-Za-z0-9_-]{24,64}/, 'der projektspezifische Kundenlink'],
+  ['verwaltung/index.html', /fragebogen\.html\?e=[A-Za-z0-9_-]{24,64}/, 'der projektspezifische Kundenlink']
 ];
 
 const fehler = [];
