@@ -30,6 +30,11 @@ const PRAEFIX = new URL(BASIS).pathname.replace(/\/+$/, '');
 const w = (pfad) => PRAEFIX + pfad;
 const CHROME = process.env.CHROME_PFAD || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
 
+// Der projektspezifische Kundenlink. Geprueft wird die GENAUE Adresse: Ein
+// Verweis auf die blosse Startseite von FlowerTech fuehrt ins Leere — er sah
+// live richtig aus und war es nicht.
+const KUNDENLINK = 'https://flowertech.ch/fragebogen.html?e=fKZREO7TEHrO2LjyTXGfv7af';
+
 let geprueft = 0;
 const fehler = [];
 const ok = (bedingung, text) => {
@@ -129,8 +134,10 @@ const agb = seite.locator('.tafel[data-ansicht="agb"]');
 ok(await agb.isVisible(), 'Die AGB-Ansicht öffnet nicht');
 const agbText = await agb.innerText();
 ok(/AGB/.test(agbText), 'Die AGB werden nicht genannt');
-ok(await agb.locator('a[href*="flowertech.ch"]').count() > 0,
-  'Es fehlt der Weg zum Kundenbereich');
+ok(await agb.locator(`a[href="${KUNDENLINK}"]`).count() > 0,
+  'Der AGB-Reiter fuehrt nicht zum projektspezifischen Kundenlink');
+ok(await agb.locator('a[href="https://flowertech.ch/"]').count() === 0,
+  'Der AGB-Reiter fuehrt noch auf die blosse FlowerTech-Startseite');
 
 /* ── 6. Änderungsleiste mit Filtern ──────────────────────────────────────── */
 
@@ -174,8 +181,8 @@ await seite.locator('#wunschKopieren').click();
 await seite.waitForTimeout(200);
 ok((await seite.locator('#wunschStatus').innerText()).length > 0,
   'Der Änderungswunsch gibt keine Rückmeldung');
-ok(await seite.locator('.spalte__fuss a[href*="flowertech.ch"]').count() > 0,
-  'Der Weg zum Absenden fehlt');
+ok(await seite.locator(`.spalte__fuss a[href="${KUNDENLINK}"]`).count() > 0,
+  'Der Aenderungswunsch fuehrt nicht zum projektspezifischen Kundenlink');
 
 /* ── 8. Verlinkung, Verwaltung als eigene Adresse, keine Geheimnisse ─────── */
 
@@ -195,6 +202,10 @@ ok(await seite.locator('input[type="password"]').count() === 0,
 ok(/keine Zugangsdaten|keine Passwörter/i.test(vwGanz),
   'Die Verwaltung sagt nicht zu, dass sie keine Zugangsdaten zeigt');
 ok(await seite.locator('form').count() === 0, 'Die Verwaltung hat ein absendendes Formular');
+ok(await seite.locator(`a[href="${KUNDENLINK}"]`).count() > 0,
+  'Die Verwaltung fuehrt nicht zum projektspezifischen Kundenlink');
+ok(await seite.locator('a[href="https://flowertech.ch/"]').count() === 0,
+  'Die Verwaltung fuehrt noch auf die blosse FlowerTech-Startseite');
 ok(!/mailto:/.test(await seite.content()), 'Die Verwaltung löst einen Mailablauf aus');
 
 // Die flachen Ausweichadressen zeigen dieselbe Seite — sie sind die

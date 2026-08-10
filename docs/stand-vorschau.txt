@@ -3,4 +3,4 @@ Basispfad    : (keiner)
 Adressen     : /vorschau/  /verwaltung/
 Commit       : unbekannt
 Zweig        : unbekannt
-Gebaut       : 2026-08-10T15:00:20.182Z
+Gebaut       : 2026-08-10T15:04:08.992Z
