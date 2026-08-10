@@ -360,8 +360,13 @@ const STREIFEN = `<div id="vorschauStreifen" hidden>
 })();
 </script>`;
 
+// Die Auslieferungsseiten selbst bekommen den Streifen NICHT: Sie sind der
+// Rahmen, nicht die Website. Ihre eigene dunkle Leiste steht schon oben.
+const OHNE_STREIFEN = new Set(['vorschau.html', 'verwaltung.html']);
+
 async function streifenEinbauen() {
-  const dateien = (await readdir(OUT)).filter((f) => f.endsWith('.html'));
+  const dateien = (await readdir(OUT))
+    .filter((f) => f.endsWith('.html') && !OHNE_STREIFEN.has(f));
   let gezaehlt = 0;
   for (const datei of dateien) {
     const p = path.join(OUT, datei);
@@ -377,10 +382,24 @@ async function streifenEinbauen() {
 
 await mkdir(path.join(OUT, 'vorschau'), { recursive: true });
 await mkdir(path.join(OUT, 'verwaltung'), { recursive: true });
-await writeFile(path.join(OUT, 'vorschau', 'index.html'), zentrale(), 'utf8');
-await writeFile(path.join(OUT, 'verwaltung', 'index.html'), verwaltung(), 'utf8');
+
+const zentraleHtml = zentrale();
+const verwaltungHtml = verwaltung();
+
+await writeFile(path.join(OUT, 'vorschau', 'index.html'), zentraleHtml, 'utf8');
+await writeFile(path.join(OUT, 'verwaltung', 'index.html'), verwaltungHtml, 'utf8');
+
+// Dieselben Seiten zusätzlich als flache Dateien. Der Verzeichnis-Index ist
+// der normale Weg; scheitert er aus irgendeinem Grund an der Auslieferung,
+// gibt es damit trotzdem eine Adresse, die sicher zieht. Alle Verweise in
+// diesen Seiten sind absolut — die flache Fassung verhält sich deshalb genau
+// gleich und ist keine zweite, halb funktionierende Variante.
+await writeFile(path.join(OUT, 'vorschau.html'), zentraleHtml, 'utf8');
+await writeFile(path.join(OUT, 'verwaltung.html'), verwaltungHtml, 'utf8');
+
 const mitStreifen = await streifenEinbauen();
 
 console.log('✓ Vorschau-Zentrale und Verwaltung erzeugt');
-console.log(`  /vorschau/  /verwaltung/  ·  ${projekt.seiten.length} Seiten, ${projekt.aenderungen.length} Änderungseinträge`);
+console.log(`  /vorschau/  /verwaltung/  (auch /vorschau.html  /verwaltung.html)`);
+console.log(`  ${projekt.seiten.length} Seiten, ${projekt.aenderungen.length} Änderungseinträge`);
 console.log(`  Vorschau-Streifen in ${mitStreifen} Website-Seiten eingebaut`);
