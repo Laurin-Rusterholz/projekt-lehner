@@ -34,7 +34,19 @@
     // sicher in einem fremden Rahmen.
     imRahmen = true;
   }
-  const angefordert = /[?&](embed=flowertech|wunsch=1)(&|$)/.test(location.search);
+  /* Der Schalter steht in der Adresse — aber nur auf der ERSTEN Seite. Wer in
+     der Vorschau weiterklickt, landet auf `/verpaarungen.html` ohne Parameter,
+     und der Auswahlmodus waere still verschwunden. Genau das war der Befund
+     „geht ueberhaupt nicht". Deshalb wird die Anforderung fuer diesen Tab
+     gemerkt und gilt fuer jede Folgeseite. */
+  const MERKER = "ft-embed";
+  let angefordert = /[?&](embed=flowertech|wunsch=1)(&|$)/.test(location.search);
+  try {
+    if (angefordert) window.sessionStorage.setItem(MERKER, "1");
+    else if (window.sessionStorage.getItem(MERKER) === "1") angefordert = true;
+  } catch (e) {
+    /* ohne sessionStorage gilt nur die Adresse */
+  }
   if (!imRahmen || !angefordert) return;
 
   let aktiv = false;
