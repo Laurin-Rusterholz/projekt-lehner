@@ -187,3 +187,72 @@ Ordner `/docs` wählen. Die Datei `.nojekyll` liegt bereits im Build.
 **Eigener Webspace:** den Inhalt von `docs/` hochladen. Es wird kein PHP und keine Datenbank
 benötigt. Für saubere Adressen ohne `.html` genügt eine passende Server-Regel; die interne
 Verlinkung funktioniert auch ohne.
+
+## Vorschau-Zentrale, Website und Verwaltung
+
+Die Kundschaft bekommt **eine** Adresse: die Vorschau-Zentrale. Von dort führt
+alles weiter — sie muss sich keine zweite merken.
+
+| Ansicht | Adresse | Was sie zeigt |
+| --- | --- | --- |
+| **Vorschau-Zentrale** | `/vorschau/` | Die Haupt-Adresse. Dunkle Leiste mit Umschaltern, grosse echte Website-Vorschau, Änderungsleiste, Offerte und der Weg zu AGB und Freigabe |
+| Website | `/` | Die neue Seite selbst — das Produkt |
+| Verwaltung | `/verwaltung/` | Stand, veröffentlichte Vorschau, Änderungswünsche, Inhalte, Freigabe-Ablauf |
+
+Grundsätze:
+
+* **Die Vorschau ist echt.** Im Rahmenfenster der Zentrale steht die wirklich
+  ausgelieferte Seite, kein Abbild und kein Screenshot.
+* **Die Offerte nennt keinen Betrag.** Sie trägt „Kosten noch offen — nach
+  Vereinbarung" und ist ausdrücklich als unverbindlich gekennzeichnet. Die
+  verbindliche Offerte läuft über FlowerTech.
+* **Die Verwaltung ist kein Adminbereich.** Keine Zugangsdaten, kein Passwortfeld,
+  kein absendendes Formular — und sie löst nichts aus.
+* **Der Änderungswunsch wird hier nicht verschickt.** Diese Seite hat keinen
+  Posteingang. Sie stellt den Text zusammen und legt ihn in die Zwischenablage;
+  abgeschickt wird er über den FlowerTech-Kundenlink, wo er am richtigen Vorgang
+  landet. Lieber ein ehrlicher Zwischenschritt als ein Knopf, der so tut.
+* **Nicht im Suchindex.** Beide Oberflächen tragen `noindex, nofollow`.
+* **Der Vorschau-Streifen** unten auf der Website gehört zur Vorschau, nicht zum
+  Produkt: Er wird beim Bauen nachträglich eingelegt (`build-vorschau.mjs`) und
+  fällt beim Live-Gang mit diesem Schritt weg. Im Rahmenfenster blendet er sich
+  selbst aus.
+
+### Bauen und prüfen
+
+```bash
+node build.mjs && node build-vorschau.mjs   # Website + Rahmen
+node scripts/serve.mjs                      # http://localhost:4173
+node tests/abnahme.mjs                      # Abnahme im echten Browser
+```
+
+`tests/abnahme.mjs` fährt mit Chromium durch alle Punkte: Zentrale, Website im
+Rahmen, Verwaltung, Offerte ohne Betrag, AGB, Änderungsleiste samt Filtern,
+Verlinkung beider Oberflächen und die Zusicherung, dass keine Zugangsdaten
+dastehen. Playwright steht bewusst **nicht** in `package.json` — der
+Netlify-Build soll schlank bleiben; für die Abnahme genügt ein lokal
+vorhandenes Playwright.
+
+### Zwei Veröffentlichungswege — und ein Nachweis
+
+| Weg | Adresse | Nachweis |
+| --- | --- | --- |
+| GitHub Pages | `…github.io/projekt-lehner/vorschau/` | Actions-Lauf im Repository, mit Ergebnis und Adresse |
+| Netlify | eigene Domain, Basispfad leer | Netlify-Dashboard |
+
+Der Pages-Weg (`.github/workflows/pages.yml`) baut mit `BASIS_PFAD` — unter
+Pages liegt das Projekt in einem Unterverzeichnis. Die Website selbst verlinkt
+durchgehend relativ und braucht das nicht; die Auslieferungsseiten verlinken
+absolut und bekommen den Basispfad vorangestellt.
+
+**Deploy-Marker.** `/stand-website.txt` und `/stand-vorschau.txt` sagen, welcher
+Stand wirklich ausgeliefert wird — Commit, Zweig, Zeitpunkt und welcher
+Build-Schritt sie geschrieben hat:
+
+* beide da → der ganze Build ist draussen
+* nur `stand-website.txt` → `build-vorschau.mjs` lief nicht
+* keiner → dieser Build wurde nie veröffentlicht
+
+Ohne sie liess sich von aussen nicht unterscheiden, ob eine fehlende Seite an
+einem alten Deploy liegt oder an der Auslieferung — man sah nur eine 404 und
+konnte raten. Genau das hat dieses Projekt zwei Anläufe gekostet.

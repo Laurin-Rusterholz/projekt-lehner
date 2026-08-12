@@ -1,0 +1,120 @@
+{
+  "projekt": "Website-Neubau Brumag*CH",
+  "kunde": "Familie Lehner · Brumag*CH, Grub AR",
+  "stand": "Vorschau zur Abnahme",
+  "bestehendeSeite": "https://www.bkh-brumag.ch/index.php",
+  "ansichten": {
+    "website": { "pfad": "/", "label": "Website", "hinweis": "So sieht die neue Seite für Ihre Besucherinnen und Besucher aus." },
+    "verwaltung": { "pfad": "/verwaltung/", "label": "Verwaltung", "hinweis": "Ihre Übersicht zum Projekt: Stand, Inhalte, Änderungen und Freigabe." }
+  },
+  "kundenbereich": {
+    "anbieter": "FlowerTech",
+    "url": "https://flowertech.ch/",
+    "customerPortalUrl": "https://flowertech.ch/fragebogen.html?e=fKZREO7TEHrO2LjyTXGfv7af",
+    "hinweis": "AGB, Vertrag und die offizielle Freigabe stehen auf Ihrem persönlichen FlowerTech-Kundenlink. Den Link haben Sie von uns erhalten — er bleibt immer derselbe und wächst mit dem Projekt."
+  },
+  "seiten": [
+    { "titel": "Start", "pfad": "/index.html", "zweck": "Einstieg mit Bildfolge, aktuellem Wurf und den wichtigsten Wegen", "stand": "fertig" },
+    { "titel": "Über uns", "pfad": "/ueber-uns.html", "zweck": "Die Zucht, die Haltung und wofür Brumag*CH steht", "stand": "fertig" },
+    { "titel": "Unsere Katzen", "pfad": "/katzen.html", "zweck": "Übersicht der Zuchtkatzen, je mit eigener Unterseite", "stand": "fertig" },
+    { "titel": "Babies", "pfad": "/babies.html", "zweck": "Der aktuelle Wurf mit Bildern und Angaben", "stand": "fertig" },
+    { "titel": "Verpaarungen", "pfad": "/verpaarungen.html", "zweck": "Geplante und erfolgte Verpaarungen als Tabelle", "stand": "fertig" },
+    { "titel": "Abgabe", "pfad": "/abgabe.html", "zweck": "Bedingungen der Abgabe und was dazugehört", "stand": "fertig" },
+    { "titel": "Kontakt", "pfad": "/kontakt.html", "zweck": "Telefon, E-Mail und der Weg zu Ihnen", "stand": "fertig" },
+    { "titel": "Babies-Archiv", "pfad": "/babies-archiv.html", "zweck": "Frühere Würfe als Galerie", "stand": "fertig" },
+    { "titel": "Impressum", "pfad": "/impressum.html", "zweck": "Pflichtangaben", "stand": "fertig" },
+    { "titel": "Datenschutz", "pfad": "/datenschutz.html", "zweck": "Umgang mit Daten, ohne Tracking", "stand": "fertig" }
+  ],
+  "aenderungen": [
+    {
+      "titel": "FAQ mit Aufklapp-Animation und mobile Schnellleiste",
+      "bereich": "website",
+      "stand": "umgesetzt",
+      "datum": "2026-08-07",
+      "quelle": "Projektverlauf",
+      "detail": "Sieben häufige Fragen zum Aufklappen; auf dem Handy eine feste Leiste mit Anruf und E-Mail."
+    },
+    {
+      "titel": "Handy-Optimierung, Bildpipeline und neue Schrift",
+      "bereich": "website",
+      "stand": "umgesetzt",
+      "datum": "2026-08-06",
+      "quelle": "Projektverlauf",
+      "detail": "Bilder werden beim Veröffentlichen verkleinert (WebP/JPEG, mehrere Breiten) — dadurch lädt die Seite auf dem Handy deutlich schneller."
+    },
+    {
+      "titel": "Aufbau nach AIDA und Stilkonzept „Warmes Plüsch“",
+      "bereich": "website",
+      "stand": "umgesetzt",
+      "datum": "2026-08-06",
+      "quelle": "Projektverlauf",
+      "detail": "Reihenfolge und Bildsprache folgen einem klaren Konzept statt der alten Seitenstruktur."
+    },
+    {
+      "titel": "Neubau von bkh-brumag.ch als statische Seite",
+      "bereich": "website",
+      "stand": "umgesetzt",
+      "datum": "2026-08-06",
+      "quelle": "Projektverlauf",
+      "detail": "Alle Inhalte der bestehenden Seite übernommen und neu aufgebaut: 15 Seiten, 4 Katzenporträts."
+    },
+    {
+      "titel": "Vorschau-Zentrale und Verwaltungsansicht",
+      "bereich": "verwaltung",
+      "stand": "umgesetzt",
+      "datum": "2026-08-10",
+      "quelle": "Projektverlauf",
+      "detail": "Diese Oberfläche: Website und Verwaltung an einer Adresse, mit Offerte, Änderungsleiste und Weg zu AGB und Freigabe."
+    },
+    {
+      "titel": "Ihre Rückmeldung zur Vorschau",
+      "bereich": "website",
+      "stand": "offen",
+      "datum": "",
+      "quelle": "wartet auf Sie",
+      "detail": "Schauen Sie die Vorschau in Ruhe an. Was Ihnen auffällt, halten wir hier fest und setzen es in der nächsten Fassung um."
+    },
+    {
+      "titel": "Texte gegenlesen und ergänzen",
+      "bereich": "website",
+      "stand": "offen",
+      "datum": "",
+      "quelle": "wartet auf Sie",
+      "detail": "Die Texte stammen aus der bestehenden Seite. Wo Sie etwas anders formulieren möchten, ändern wir es."
+    },
+    {
+      "titel": "Domain-Umstellung auf bkh-brumag.ch",
+      "bereich": "verwaltung",
+      "stand": "offen",
+      "datum": "",
+      "quelle": "nach Ihrer Freigabe",
+      "detail": "Erst nach Ihrer Freigabe und in Absprache. Bis dahin bleibt die bestehende Seite unverändert online."
+    }
+  ],
+  "offerte": {
+    "titel": "Website-Neubau Brumag*CH",
+    "kostenStand": "Kosten noch offen — nach Vereinbarung",
+    "hinweis": "Unverbindliche Übersicht des Leistungsumfangs. Das ist keine Offerte im rechtlichen Sinn: Es wurde nichts versendet, es besteht keine Preiszusage und es entsteht keine Rechnung. Die verbindliche Offerte erhalten Sie separat über FlowerTech.",
+    "positionen": [
+      { "leistung": "Neuaufbau aller Inhalte", "umfang": "15 Seiten inklusive 4 Katzenporträts, Babies-Archiv und Verpaarungstabelle" },
+      { "leistung": "Gestaltung und Aufbau", "umfang": "Eigenes Stilkonzept, Bildsprache und Seitenführung statt Baukasten-Vorlage" },
+      { "leistung": "Handy und Tablet", "umfang": "Durchgehend mitgedacht, mit fester Schnellleiste für Anruf und E-Mail" },
+      { "leistung": "Bilder", "umfang": "Automatisch verkleinerte Varianten in mehreren Breiten für kurze Ladezeiten" },
+      { "leistung": "Auffindbarkeit", "umfang": "Titel, Beschreibungen, Sitemap und strukturierte Daten je Seite" },
+      { "leistung": "Datenschutz", "umfang": "Ohne Tracking, ohne Cookie-Banner, ohne externe Schriftdienste" },
+      { "leistung": "Verwaltungsansicht", "umfang": "Diese Übersicht zu Stand, Inhalten, Änderungen und Freigabe" }
+    ]
+  },
+  "freigabe": [
+    { "schritt": "Vorschau anschauen", "stand": "laufend", "text": "Website und Verwaltung an dieser Adresse durchgehen — auf dem Rechner und auf dem Handy." },
+    { "schritt": "Änderungswünsche melden", "stand": "offen", "text": "Über Ihren persönlichen FlowerTech-Kundenlink. Jeder Wunsch landet direkt am Projekt." },
+    { "schritt": "Nächste Fassung", "stand": "offen", "text": "Wir setzen die Wünsche um und stellen die überarbeitete Vorschau an dieselbe Adresse." },
+    { "schritt": "Freigabe", "stand": "offen", "text": "Erst mit Ihrer ausdrücklichen Freigabe wird die Seite auf bkh-brumag.ch aufgeschaltet." }
+  ],
+  "naechsteAenderung": [
+    "Sagen Sie uns, was anders soll — ein Satz genügt, wir fragen bei Bedarf nach.",
+    "Bilder und Texte können Sie uns jederzeit nachliefern; wir bauen sie ein.",
+    "Neue Würfe, Verpaarungen und Katzen pflegen wir für Sie nach — die Seite bleibt aktuell.",
+    "Ihre bestehende Seite bleibt unverändert online, bis Sie freigeben."
+  ]
+}

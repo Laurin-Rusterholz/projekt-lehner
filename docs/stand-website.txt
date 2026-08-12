@@ -1,0 +1,5 @@
+Schritt      : build.mjs (Website)
+Seiten       : 15
+Commit       : unbekannt
+Zweig        : unbekannt
+Gebaut       : 2026-08-12T04:41:54.357Z

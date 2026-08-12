@@ -1,0 +1,89 @@
+# Veröffentlichung über GitHub Pages — der nachweisbare Weg.
+# ---------------------------------------------------------------------------
+# Anlass: Die Netlify-Veröffentlichung liess sich von aussen nicht belegen. Sie
+# lieferte weiter einen alten Stand aus, ohne dass irgendwo sichtbar wurde,
+# welcher Build gerade online ist oder ob überhaupt einer lief.
+#
+# Dieser Weg ist anders: Jeder Lauf steht als Actions-Lauf im Repository, mit
+# Ergebnis und Adresse. Ein Deploy, den niemand nachprüfen kann, ist kein
+# Deploy — das war die eigentliche Lehre aus diesem Projekt.
+#
+# `configure-pages` schaltet Pages beim ersten Lauf selbst ein (enablement),
+# damit dafür kein Griff in die Einstellungen nötig ist.
+#
+# Der Basispfad muss gesetzt sein: Unter Pages liegt das Projekt in einem
+# Unterverzeichnis (/projekt-lehner), nicht auf einer eigenen Domain.
+name: Vorschau veröffentlichen (GitHub Pages)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Ein Deploy nach dem anderen; laufende nicht abbrechen, damit eine begonnene
+# Veröffentlichung auch fertig wird.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  bauen-und-veroeffentlichen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Pages einrichten
+        id: pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      # Die Bilder liegen auf der bestehenden Website. Ist sie nicht
+      # erreichbar, wird ohne sie gebaut — die Vorschau ist wichtiger als
+      # scharfe Fotos, und ein verlorener Deploy hilft niemandem.
+      - name: Bilder holen (darf fehlschlagen)
+        run: node scripts/fetch-images.mjs || echo "Bilder uebersprungen — Build laeuft weiter"
+
+      - name: Website bauen
+        run: node build.mjs
+
+      - name: Vorschau-Zentrale und Verwaltung bauen
+        env:
+          # Unter Pages liegt alles unter /projekt-lehner.
+          BASIS_PFAD: ${{ steps.pages.outputs.base_path }}
+        run: node build-vorschau.mjs
+
+      - name: Ergebnis prüfen
+        run: node scripts/pruefe-ausgabe.mjs
+
+      - name: Ausgabe einpacken
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+      - name: Veröffentlichen
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Adressen ausgeben
+        run: |
+          echo "### Veröffentlicht" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Vorschau-Zentrale: ${{ steps.deployment.outputs.page_url }}vorschau/" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Website: ${{ steps.deployment.outputs.page_url }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Verwaltung: ${{ steps.deployment.outputs.page_url }}verwaltung/" >> "$GITHUB_STEP_SUMMARY"

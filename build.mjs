@@ -460,6 +460,23 @@ async function build() {
   await writeFile(path.join(OUT, '.nojekyll'), '', 'utf8');
   await writeSitemap(slugs);
 
+  /* Ein Marker, der sagt WELCHER Stand ausgeliefert wird. Ohne ihn liess sich
+     von aussen nicht unterscheiden, ob eine fehlende Seite an einem alten
+     Deploy liegt oder an der Auslieferung — man sah nur eine 404 und konnte
+     raten. Diese Datei kostet nichts und beendet das Raten. */
+  await writeFile(
+    path.join(OUT, 'stand-website.txt'),
+    [
+      'Schritt      : build.mjs (Website)',
+      `Seiten       : ${slugs.length}`,
+      `Commit       : ${process.env.COMMIT_REF || process.env.GITHUB_SHA || 'unbekannt'}`,
+      `Zweig        : ${process.env.BRANCH || process.env.GITHUB_REF_NAME || 'unbekannt'}`,
+      `Gebaut       : ${new Date().toISOString()}`,
+      ''
+    ].join('\n'),
+    'utf8'
+  );
+
   console.log(`✓ ${slugs.length} Seiten erzeugt in docs/`);
   console.log('  ' + slugs.map((s) => `${s}.html`).join('  '));
 }
