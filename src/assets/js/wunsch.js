@@ -152,6 +152,9 @@
         sectionTitle: sec.titel,
         label: bezeichnung(node),
         tag: node.tagName.toLowerCase(),
+        /* Ein Verweis oder Knopf waere im Auswahlmodus gesprungen. Der
+           Kundenlink sagt deshalb dazu, wie man ihn wirklich oeffnet. */
+        oeffnet: !!(node.closest && node.closest('a[href], button, [role="button"]')),
         url: location.href.replace(/([?&])(embed=flowertech|wunsch=1)(&|$)/, '$1').replace(/[?&]$/, ''),
         lang: document.documentElement.lang || '',
       });
