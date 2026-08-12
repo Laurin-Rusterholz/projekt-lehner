@@ -1,6 +1,0 @@
-Schritt      : build-vorschau.mjs (Vorschau-Zentrale)
-Basispfad    : (keiner)
-Adressen     : /vorschau/  /verwaltung/
-Commit       : unbekannt
-Zweig        : unbekannt
-Gebaut       : 2026-08-10T15:04:08.992Z

@@ -6,77 +6,40 @@ ogImage: assets/img/babies/wurf-2026-03-01-1200.jpg
 
 <section class="page-head wrap">
   <p class="avail avail--solid"><span class="dot" aria-hidden="true"></span> Aktuell Kitten verfügbar</p>
-  <p class="page-head__kicker">Aktuelle Babies</p>
   <h1>Wir haben Babies</h1>
   <p class="page-head__lead">
-    Geboren am <time datetime="{{litter-datetime}}">{{litter-date}}</time><span data-birth="{{litter-datetime}}"></span>.
+    Am <time datetime="{{litter-datetime}}">{{litter-date}}</time> sind bei uns
+    Kitten geboren<span data-birth="{{litter-datetime}}"></span>. Sie wachsen im
+    Wohnzimmer auf &ndash; Farben, Auszugstermin und Verfügbarkeit besprechen wir
+    am liebsten persönlich.
   </p>
-</section>
-
-<section class="section section--tight wrap">
-  <div class="grid grid--split">
-    <div class="stack">
-{{litter-image}}
-    </div>
-    <div class="stack">
-      <h2>Unser Wurf vom {{litter-date}}</h2>
-      <p>
-        Die Kleinen wachsen mitten bei uns im Wohnbereich auf. In den ersten Wochen geht es vor allem um
-        Ruhe, Wärme und die Mutter &ndash; danach beginnt die spannende Zeit, in der sie das Haus, uns Menschen
-        und die anderen Katzen kennenlernen.
-      </p>
-      <p>
-        Wie viele Kitten noch frei sind, welche Farben dabei sind und wann sie ausziehen können, sagen wir
-        Ihnen am liebsten persönlich. Rufen Sie uns an oder schreiben Sie uns &ndash; wir nehmen uns Zeit.
-      </p>
-      <div class="btn-row">
-        <a class="btn btn--primary" href="kontakt.html">Anfrage stellen</a>
-        <a class="btn btn--ghost" href="tel:{{phone-href}}">{{phone}}</a>
-      </div>
-      <p class="hint" style="font-size:.9rem">
-        Weitere Bilder folgen, sobald die Kleinen unterwegs sind. Kitten-Fotos brauchen Geduld.
-      </p>
-    </div>
+  <div class="btn-row" style="margin-top:1.1rem">
+    <a class="btn btn--primary" href="tel:{{phone-href}}">Anrufen: {{phone}}</a>
+    <a class="btn btn--ghost" href="kontakt.html">Anfrage schreiben</a>
   </div>
 </section>
 
+<section class="section section--tight wrap">
+  <h2>Unser Wurf vom {{litter-date}}</h2>
+{{litter-image}}
+</section>
+
 <section class="section section--alt section--edge">
-  <div class="wrap">
-    <h2>Wie es weitergeht</h2>
-    <ol class="steps" style="max-width:52rem">
-      <li>
-        <div>
-          <h3>Sie melden sich bei uns</h3>
-          <p>Per Telefon oder über das Kontaktformular. Erzählen Sie uns kurz von sich und Ihrem Zuhause.</p>
-        </div>
-      </li>
-      <li>
-        <div>
-          <h3>Wir sprechen in Ruhe miteinander</h3>
-          <p>Dabei klären wir alles Wichtige: Haltung, Charakter der einzelnen Kitten, Termine, Kosten und Vertrag.</p>
-        </div>
-      </li>
-      <li>
-        <div>
-          <h3>Kennenlernen vor Ort</h3>
-          <p>Wenn es für beide Seiten passt, lernen Sie die Kleinen und ihre Mutter bei uns in Grub AR kennen.</p>
-        </div>
-      </li>
-      <li>
-        <div>
-          <h3>Auszug ins neue Zuhause</h3>
-          <p>Erst wenn die Kitten alt genug und bereit sind &ndash; mit allen Unterlagen und unserer Erreichbarkeit für Fragen danach.</p>
-        </div>
-      </li>
+  <div class="wrap grid grid--split">
+    <div class="prose">
+      <h2>Wie es weitergeht</h2>
+    </div>
+    <ol class="steps">
+      <li><strong>Kennenlernen am Telefon.</strong> Wir erzählen, was gerade da ist &ndash; Sie erzählen von sich.</li>
+      <li><strong>Besuch nach Absprache.</strong> In den ersten Wochen kurz und selten, den Kleinen zuliebe.</li>
+      <li><strong>Auszug frühestens mit rund 12 Wochen</strong> &ndash; geimpft, mit Papieren, übergeben bei uns zu Hause.</li>
     </ol>
-    <p style="margin-top:1.8rem"><a href="abgabe.html">Mehr zur Abgabe</a></p>
   </div>
 </section>
 
 <section class="section wrap">
-  <h2>Frühere Würfe</h2>
-  <p class="lead">Bilder aus unseren vergangenen Würfen finden Sie im Archiv.</p>
-  <div class="btn-row" style="margin-top:1.2rem">
-    <a class="btn btn--ghost" href="babies-archiv.html">Zum Babies-Archiv</a>
-  </div>
+  <p class="hint">
+    Bilder aus früheren Würfen finden Sie im <a href="babies-archiv.html">Babies-Archiv</a>.
+    Häufige Fragen beantworten wir auf der Seite <a href="abgabe.html">Abgabe</a>.
+  </p>
 </section>
