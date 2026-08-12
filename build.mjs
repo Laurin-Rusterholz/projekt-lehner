@@ -75,27 +75,28 @@ function picture(image, opts = {}) {
 
 /* ------------------------------------------------------------- Bausteine */
 
+/* Früher ein Slider mit acht Bildern und dunkler Bühne. Jetzt ein
+   Familienalbum: ein grosses Foto, zwei kleine schräg daneben — hingelegt
+   wie auf den Küchentisch. Ohne [data-hero] im Markup bleibt der alte
+   Slider-Code in main.js einfach still. */
 function heroBlock() {
   const { slides, widths, label } = media.hero;
-  const items = slides
-    .map((slide, i) => {
-      const img = { ...slide, widths, alt: '' };
-      const set = (ext) => widths.map((w) => `${img.base}-${w}.${ext} ${w}w`).join(', ');
-      return `      <div class="hero__slide${i === 0 ? ' is-active' : ''}">
-        <picture>
-          <source type="image/webp" srcset="${set('webp')}" sizes="100vw">
-          <img src="${img.base}-${widths[1]}.jpg" srcset="${set('jpg')}" sizes="100vw" alt=""
-               loading="${i === 0 ? 'eager' : 'lazy'}" decoding="async"${i === 0 ? ' fetchpriority="high"' : ''}
-               data-fallback="${esc(legacyUrl(slide.legacy))}">
-        </picture>
-      </div>`;
-    })
-    .join('\n');
-
-  return `    <div class="hero__slides" role="img" aria-label="${esc(label)}">
-${items}
-    </div>
-    <div class="hero__dots" role="group" aria-label="Bildauswahl"></div>`;
+  const bild = (i, opts) =>
+    picture({ base: slides[i].base, legacy: slides[i].legacy, widths, alt: '' }, opts)
+      .split('\n')
+      .map((l) => '        ' + l)
+      .join('\n');
+  return `    <div class="album" role="img" aria-label="${esc(label)}">
+      <figure class="album__main">
+${bild(0, { sizes: '(min-width: 56rem) 55vw, 92vw', aspect: 'wide', priority: true })}
+      </figure>
+      <figure class="album__side album__side--a">
+${bild(3, { sizes: '18vw', aspect: 'square' })}
+      </figure>
+      <figure class="album__side album__side--b">
+${bild(4, { sizes: '18vw', aspect: 'square' })}
+      </figure>
+    </div>`;
 }
 
 function catCard(cat) {
@@ -391,8 +392,8 @@ async function render(layout, { slug, meta, body }) {
 /* ------------------------------------------------------------- Nebendateien */
 
 const FAVICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-<rect width="48" height="48" rx="10" fill="#47586a"/>
-<g fill="#f7f4f0">
+<rect width="48" height="48" rx="10" fill="#9d6127"/>
+<g fill="#fffdf7">
 <path d="M24 27c-6.2 0-11 3.7-11 8.6 0 3.3 2.5 5.4 6.2 5.4 1.9 0 3.3-.5 4.8-.5s2.9.5 4.8.5c3.7 0 6.2-2.1 6.2-5.4C35 30.7 30.2 27 24 27Z"/>
 <ellipse cx="12.4" cy="20.6" rx="4.1" ry="5.4" transform="rotate(-18 12.4 20.6)"/>
 <ellipse cx="35.6" cy="20.6" rx="4.1" ry="5.4" transform="rotate(18 35.6 20.6)"/>
