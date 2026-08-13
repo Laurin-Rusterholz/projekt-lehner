@@ -188,71 +188,38 @@ Ordner `/docs` wählen. Die Datei `.nojekyll` liegt bereits im Build.
 benötigt. Für saubere Adressen ohne `.html` genügt eine passende Server-Regel; die interne
 Verlinkung funktioniert auch ohne.
 
-## Vorschau-Zentrale, Website und Verwaltung
+## Eine Oberfläche: der FlowerTech-Kundenlink
 
-Die Kundschaft bekommt **eine** Adresse: die Vorschau-Zentrale. Von dort führt
-alles weiter — sie muss sich keine zweite merken.
+Dieses Repository enthält **nur die Website** (das Produkt). Der Rahmen, in dem
+die Kundschaft die Website anschaut und Änderungswünsche registriert, ist der
+FlowerTech-Kundenlink (`fragebogen.html?e=<Token>` auf flowertech.ch) — er bettet
+die ausgelieferte Website als echte, bedienbare Vorschau ein. Frühere eigene
+Auslieferungsflächen in diesem Repository (`/vorschau/`, `/verwaltung/`,
+Vorschau-Streifen) sind entfernt; `scripts/pruefe-ausgabe.mjs` schlägt fehl,
+wenn sie wieder auftauchen.
 
-| Ansicht | Adresse | Was sie zeigt |
-| --- | --- | --- |
-| **Vorschau-Zentrale** | `/vorschau/` | Die Haupt-Adresse. Dunkle Leiste mit Umschaltern, grosse echte Website-Vorschau, Änderungsleiste, Offerte und der Weg zu AGB und Freigabe |
-| Website | `/` | Die neue Seite selbst — das Produkt |
-| Verwaltung | `/verwaltung/` | Stand, veröffentlichte Vorschau, Änderungswünsche, Inhalte, Freigabe-Ablauf |
-
-Grundsätze:
-
-* **Die Vorschau ist echt.** Im Rahmenfenster der Zentrale steht die wirklich
-  ausgelieferte Seite, kein Abbild und kein Screenshot.
-* **Die Offerte nennt keinen Betrag.** Sie trägt „Kosten noch offen — nach
-  Vereinbarung" und ist ausdrücklich als unverbindlich gekennzeichnet. Die
-  verbindliche Offerte läuft über FlowerTech.
-* **Die Verwaltung ist kein Adminbereich.** Keine Zugangsdaten, kein Passwortfeld,
-  kein absendendes Formular — und sie löst nichts aus.
-* **Der Änderungswunsch wird hier nicht verschickt.** Diese Seite hat keinen
-  Posteingang. Sie stellt den Text zusammen und legt ihn in die Zwischenablage;
-  abgeschickt wird er über den FlowerTech-Kundenlink, wo er am richtigen Vorgang
-  landet. Lieber ein ehrlicher Zwischenschritt als ein Knopf, der so tut.
-* **Nicht im Suchindex.** Beide Oberflächen tragen `noindex, nofollow`.
-* **Der Vorschau-Streifen** unten auf der Website gehört zur Vorschau, nicht zum
-  Produkt: Er wird beim Bauen nachträglich eingelegt (`build-vorschau.mjs`) und
-  fällt beim Live-Gang mit diesem Schritt weg. Im Rahmenfenster blendet er sich
-  selbst aus.
+Für die Einbettung meldet `src/assets/js/wunsch.js` auf Anforderung, worauf
+getippt wurde — nur im Rahmen, nur mit `?embed=flowertech`, nur an die Herkunft
+`flowertech.ch` (bzw. `localhost` für die lokale Abnahme), und nur öffentliche
+Textangaben der Seite.
 
 ### Bauen und prüfen
 
 ```bash
-node build.mjs && node build-vorschau.mjs   # Website + Rahmen
-node scripts/serve.mjs                      # http://localhost:4173
-node tests/abnahme.mjs                      # Abnahme im echten Browser
+node build.mjs                 # Website nach docs/
+node scripts/pruefe-ausgabe.mjs  # Vollständigkeit + Trennungs-Wächter
+node scripts/serve.mjs         # http://localhost:4173
 ```
 
-`tests/abnahme.mjs` fährt mit Chromium durch alle Punkte: Zentrale, Website im
-Rahmen, Verwaltung, Offerte ohne Betrag, AGB, Änderungsleiste samt Filtern,
-Verlinkung beider Oberflächen und die Zusicherung, dass keine Zugangsdaten
-dastehen. Playwright steht bewusst **nicht** in `package.json` — der
-Netlify-Build soll schlank bleiben; für die Abnahme genügt ein lokal
-vorhandenes Playwright.
+**Deploy-Marker.** `/stand-website.txt` sagt, welcher Stand wirklich ausgeliefert
+wird — Commit, Zweig und Zeitpunkt. Ohne ihn liess sich von aussen nicht
+unterscheiden, ob eine fehlende Seite an einem alten Deploy liegt oder an der
+Auslieferung.
 
-### Zwei Veröffentlichungswege — und ein Nachweis
+## Sicherheit
 
-| Weg | Adresse | Nachweis |
-| --- | --- | --- |
-| GitHub Pages | `…github.io/projekt-lehner/vorschau/` | Actions-Lauf im Repository, mit Ergebnis und Adresse |
-| Netlify | eigene Domain, Basispfad leer | Netlify-Dashboard |
-
-Der Pages-Weg (`.github/workflows/pages.yml`) baut mit `BASIS_PFAD` — unter
-Pages liegt das Projekt in einem Unterverzeichnis. Die Website selbst verlinkt
-durchgehend relativ und braucht das nicht; die Auslieferungsseiten verlinken
-absolut und bekommen den Basispfad vorangestellt.
-
-**Deploy-Marker.** `/stand-website.txt` und `/stand-vorschau.txt` sagen, welcher
-Stand wirklich ausgeliefert wird — Commit, Zweig, Zeitpunkt und welcher
-Build-Schritt sie geschrieben hat:
-
-* beide da → der ganze Build ist draussen
-* nur `stand-website.txt` → `build-vorschau.mjs` lief nicht
-* keiner → dieser Build wurde nie veröffentlicht
-
-Ohne sie liess sich von aussen nicht unterscheiden, ob eine fehlende Seite an
-einem alten Deploy liegt oder an der Auslieferung — man sah nur eine 404 und
-konnte raten. Genau das hat dieses Projekt zwei Anläufe gekostet.
+Die Antwort-Kopfzeilen (u. a. `Content-Security-Policy: frame-ancestors …`,
+`X-Content-Type-Options`, `Referrer-Policy`, `Strict-Transport-Security`) stehen
+in `netlify.toml`. Einbetten dürfen die Seite nur `flowertech.ch` und die Seite
+selbst. Befunde, Prüfweg und Restrisiken: `SECURITY_AUDIT.md`,
+`SECURITY_TEST_PLAN.md`, `RESIDUAL_RISK.md`, `THREAT_MODEL.md`.
