@@ -1,0 +1,291 @@
+{
+ "hinweis": "Abschrift der veroeffentlichten Inhalte dieser Website. Erzeugt von build.mjs.",
+ "stand": "2026-08-13T19:24:30.282Z",
+ "commit": "",
+ "eintraege": [
+  {
+   "name": "Daya – Dayanara Brumag*CH",
+   "kurz": "Unsere Älteste und die Basis mehrerer Linien – Lilac mit Cinnamon-Träger­schaft.",
+   "geboren": "17. Oktober 2017",
+   "merkmale": "BRI c · Lilac · trägt Cinnamon",
+   "bild": "assets/img/cats/dayanara-800.jpg",
+   "text": "Dayanara ist die Älteste unserer Zuchtkatzen und die Basis mehrerer unserer Linien. Ihr Fell zeigt das kühle, pudrige Lilac; über ihren chocolatefarbenen Vater trägt sie zusätzlich Cinnamon. Als Junior Winner war sie mehrfach erfolgreich auf Ausstellungen im In- und Ausland."
+  },
+  {
+   "name": "Eusebia – Eusebia Brumag*CH",
+   "kurz": "Polnische Vaterlinie trifft eigene Zucht – Lilac, trägt Cinnamon.",
+   "geboren": "9. Mai 2018",
+   "merkmale": "BRI c · Lilac · trägt Cinnamon",
+   "bild": "assets/img/cats/eusebia-800.jpg",
+   "text": "Eusebia verbindet eine polnische Vaterlinie mit unserer eigenen Zucht: Ihr Vater ist der blaue PL*Gotham Great Gatsby, ihre Mutter unsere lilacfarbene Cindy. Sie ist selbst lilac und trägt Cinnamon – über sie kam dieses Gen zu Hariboo."
+  },
+  {
+   "name": "Gigi – Gigi Brumag*CH",
+   "kurz": "Tochter von Dayanara im klassischen Britisch-Blau.",
+   "geboren": "14. August 2020",
+   "merkmale": "BRI a · Blau",
+   "bild": "assets/img/cats/gigi-800.jpg",
+   "text": "Gigi ist die Tochter unserer Dayanara und zeigt das klassische Britisch-Blau, für das die Rasse bekannt ist: dichtes Plüschfell, runde Wangen und ein kompakter, kräftiger Körperbau."
+  },
+  {
+   "name": "Hariboo – Hariboo Brumag*CH",
+   "kurz": "Fawn – die seltene Farbe, die nur aus zwei Cinnamon-Trägern entsteht.",
+   "geboren": "Februar 2021",
+   "merkmale": "BRI p · Fawn",
+   "bild": "assets/img/cats/hariboo-800.jpg",
+   "text": "Hariboo trägt das seltene Fawn – ein warmes, pudriges Beige, das nur entsteht, wenn beide Elterntiere Cinnamon vererben. Beide Eltern, Camino und Eusebia, stammen aus unserer eigenen Zucht."
+  }
+ ],
+ "galerie": [
+  {
+   "bild": "assets/img/archiv/archiv-01-800.jpg",
+   "name": "Britisch-Kurzhaar-Kitten aus einem früheren Wurf"
+  },
+  {
+   "bild": "assets/img/archiv/archiv-02-800.jpg",
+   "name": "Britisch-Kurzhaar-Kitten aus einem früheren Wurf"
+  },
+  {
+   "bild": "assets/img/archiv/archiv-03-800.jpg",
+   "name": "Britisch-Kurzhaar-Kitten aus einem früheren Wurf"
+  },
+  {
+   "bild": "assets/img/archiv/archiv-04-800.jpg",
+   "name": "Britisch-Kurzhaar-Kitten aus einem früheren Wurf"
+  },
+  {
+   "bild": "assets/img/archiv/archiv-05-800.jpg",
+   "name": "Britisch-Kurzhaar-Kitten aus einem früheren Wurf"
+  },
+  {
+   "bild": "assets/img/archiv/archiv-06-800.jpg",
+   "name": "Britisch-Kurzhaar-Kitten aus einem früheren Wurf"
+  },
+  {
+   "bild": "assets/img/archiv/archiv-07-800.jpg",
+   "name": "Britisch-Kurzhaar-Kitten aus einem früheren Wurf"
+  },
+  {
+   "bild": "assets/img/archiv/archiv-08-800.jpg",
+   "name": "Britisch-Kurzhaar-Kitten aus einem früheren Wurf"
+  }
+ ],
+ "kontakt": [
+  {
+   "label": "E-Mail",
+   "wert": "info@bkh-brumag.ch"
+  },
+  {
+   "label": "Telefon",
+   "wert": "+41 (0)78 678 40 33"
+  },
+  {
+   "label": "Adresse",
+   "wert": "Familie Lehner, 9035 Grub AR, Schweiz"
+  }
+ ],
+ "recht": [
+  {
+   "label": "Verantwortlich",
+   "wert": "Familie Lehner"
+  },
+  {
+   "label": "Adresse",
+   "wert": "Familie Lehner, 9035 Grub AR, Schweiz"
+  },
+  {
+   "label": "E-Mail",
+   "wert": "info@bkh-brumag.ch"
+  }
+ ],
+ "texte": [
+  {
+   "label": "Abgabe · Überschrift",
+   "wert": "Ein Kitten zieht bei Ihnen ein"
+  },
+  {
+   "label": "Abgabe · Einleitung",
+   "wert": "Preis, Reservierung und Termin besprechen wir lieber am Telefon als über eine Preisliste – ein Kitten ist kein Versandartikel. Rufen Sie einfach an:"
+  },
+  {
+   "label": "Abgabe · Abschnitt 1",
+   "wert": "Was uns am Telefon am meisten gefragt wird"
+  },
+  {
+   "label": "Babies-Archiv · Überschrift",
+   "wert": "Babies-Archiv"
+  },
+  {
+   "label": "Babies-Archiv · Einleitung",
+   "wert": "Kitten aus früheren Würfen – zum Anschauen einfach ein Bild antippen."
+  },
+  {
+   "label": "Aktuelle Babies · Überschrift",
+   "wert": "Wir haben Babies"
+  },
+  {
+   "label": "Aktuelle Babies · Einleitung",
+   "wert": "Am 18. März 2026 sind bei uns Kitten geboren. Sie wachsen im Wohnzimmer auf – Farben, Auszugstermin und Verfügbarkeit besprechen wir am liebsten persönlich."
+  },
+  {
+   "label": "Aktuelle Babies · Abschnitt 1",
+   "wert": "Unser Wurf vom 18. März 2026"
+  },
+  {
+   "label": "Aktuelle Babies · Abschnitt 2",
+   "wert": "Wie es weitergeht"
+  },
+  {
+   "label": "Datenschutz · Überschrift",
+   "wert": "Datenschutzerklärung"
+  },
+  {
+   "label": "Datenschutz · Einleitung",
+   "wert": "Diese Website ist bewusst schlank gebaut: keine Cookies, keine Werbenetzwerke, keine externen Schriften oder Skripte von Drittanbietern."
+  },
+  {
+   "label": "Datenschutz · Abschnitt 1",
+   "wert": "Verantwortliche Stelle"
+  },
+  {
+   "label": "Datenschutz · Abschnitt 2",
+   "wert": "Welche Daten anfallen"
+  },
+  {
+   "label": "Datenschutz · Abschnitt 3",
+   "wert": "Ihre Rechte"
+  },
+  {
+   "label": "Datenschutz · Abschnitt 4",
+   "wert": "Rechtsgrundlagen"
+  },
+  {
+   "label": "Impressum · Überschrift",
+   "wert": "Impressum"
+  },
+  {
+   "label": "Impressum · Abschnitt 1",
+   "wert": "Verantwortlich für den Inhalt"
+  },
+  {
+   "label": "Impressum · Abschnitt 2",
+   "wert": "Zuchtstätte"
+  },
+  {
+   "label": "Impressum · Abschnitt 3",
+   "wert": "Haftung für Inhalte"
+  },
+  {
+   "label": "Impressum · Abschnitt 4",
+   "wert": "Haftung für Links"
+  },
+  {
+   "label": "Impressum · Abschnitt 5",
+   "wert": "Urheberrecht"
+  },
+  {
+   "label": "Startseite · Überschrift",
+   "wert": "Ein Kitten, das ein Leben lang Familie ist"
+  },
+  {
+   "label": "Startseite · Einleitung",
+   "wert": "Unsere Britisch-Kurzhaar-Kitten wachsen mitten im Familienalltag auf – und ziehen erst aus, wenn sie so weit sind."
+  },
+  {
+   "label": "Startseite · Abschnitt 1",
+   "wert": "Aufgewachsen im Wohnzimmer, nicht im Zwinger"
+  },
+  {
+   "label": "Startseite · Abschnitt 2",
+   "wert": "Unsere Katzen"
+  },
+  {
+   "label": "Startseite · Abschnitt 3",
+   "wert": "Am liebsten reden wir persönlich"
+  },
+  {
+   "label": "Unsere Katzen · Überschrift",
+   "wert": "Vier Katzen, vier Farben"
+  },
+  {
+   "label": "Unsere Katzen · Einleitung",
+   "wert": "Jede mit eigenem Steckbrief: Abstammung, Farbe, Gesundheitstests und Ausstellungserfolge – einfach auf eine Karte tippen."
+  },
+  {
+   "label": "Unsere Katzen · Abschnitt 1",
+   "wert": "Übersicht unserer Zuchtkatzen"
+  },
+  {
+   "label": "Kontakt · Überschrift",
+   "wert": "Wir freuen uns auf Ihre Nachricht"
+  },
+  {
+   "label": "Kontakt · Einleitung",
+   "wert": "Rufen Sie an oder schreiben Sie uns eine E-Mail – wir melden uns zurück."
+  },
+  {
+   "label": "Über uns · Überschrift",
+   "wert": "Eine kleine Zucht mit langem Atem"
+  },
+  {
+   "label": "Über uns · Einleitung",
+   "wert": "Seit 2007 züchten wir Britisch Kurzhaar – im kleinen Rahmen, in unserem eigenen Zuhause. Nicht die Zahl der Würfe zählt, sondern wesensstarke, gut sozialisierte Katzen."
+  },
+  {
+   "label": "Über uns · Abschnitt 1",
+   "wert": "Gesundheit ist keine Option"
+  },
+  {
+   "label": "Verpaarungen · Überschrift",
+   "wert": "Wie wir planen"
+  },
+  {
+   "label": "Verpaarungen · Einleitung",
+   "wert": "Eine Verpaarung entsteht bei uns nicht spontan. Bevor zwei Katzen zusammenkommen, klären wir:"
+  },
+  {
+   "label": "Verpaarungen · Abschnitt 1",
+   "wert": "Verbindungen aus unserer Zucht"
+  },
+  {
+   "label": "Daya – Dayanara Brumag*CH · Überschrift",
+   "wert": "Daya"
+  },
+  {
+   "label": "Daya – Dayanara Brumag*CH · Einleitung",
+   "wert": "Dayanara ist die Älteste unserer Zuchtkatzen und die Basis mehrerer unserer Linien. Ihr Fell zeigt das kühle, pudrige Lilac; über ihren chocolatefarbenen Vater trägt sie zusätzlich Cinnamon. Als Junior Winner war sie mehrfach erfolgreich auf Ausstellungen im In- und Ausland."
+  },
+  {
+   "label": "Daya – Dayanara Brumag*CH · Abschnitt 1",
+   "wert": "Ausstellungserfolge"
+  },
+  {
+   "label": "Eusebia – Eusebia Brumag*CH · Überschrift",
+   "wert": "Eusebia"
+  },
+  {
+   "label": "Eusebia – Eusebia Brumag*CH · Einleitung",
+   "wert": "Eusebia verbindet eine polnische Vaterlinie mit unserer eigenen Zucht: Ihr Vater ist der blaue PL*Gotham Great Gatsby, ihre Mutter unsere lilacfarbene Cindy. Sie ist selbst lilac und trägt Cinnamon – über sie kam dieses Gen zu Hariboo."
+  },
+  {
+   "label": "Eusebia – Eusebia Brumag*CH · Abschnitt 1",
+   "wert": "Ausstellungserfolge"
+  },
+  {
+   "label": "Gigi – Gigi Brumag*CH · Überschrift",
+   "wert": "Gigi"
+  },
+  {
+   "label": "Gigi – Gigi Brumag*CH · Einleitung",
+   "wert": "Gigi ist die Tochter unserer Dayanara und zeigt das klassische Britisch-Blau, für das die Rasse bekannt ist: dichtes Plüschfell, runde Wangen und ein kompakter, kräftiger Körperbau."
+  },
+  {
+   "label": "Hariboo – Hariboo Brumag*CH · Überschrift",
+   "wert": "Hariboo"
+  },
+  {
+   "label": "Hariboo – Hariboo Brumag*CH · Einleitung",
+   "wert": "Hariboo trägt das seltene Fawn – ein warmes, pudriges Beige, das nur entsteht, wenn beide Elterntiere Cinnamon vererben. Beide Eltern, Camino und Eusebia, stammen aus unserer eigenen Zucht."
+  }
+ ]
+}

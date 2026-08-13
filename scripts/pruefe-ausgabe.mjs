@@ -36,7 +36,8 @@ const PFLICHT = [
   'assets/js/wunsch.js',
   'sitemap.xml',
   'robots.txt',
-  'stand-website.txt'
+  'stand-website.txt',
+  'inhalt.json'
 ];
 
 // Und was NICHT mehr dastehen darf — die Website ist das ganze Produkt.
@@ -85,6 +86,22 @@ for (const [datei, muster, was] of INHALT_VERBOTEN) {
   if (!(await da(datei))) continue;
   const html = await readFile(path.join(OUT, datei), 'utf8');
   if (muster.test(html)) fehler.push(`In docs/${datei} steht wieder: ${was}`);
+}
+
+/* Die Abschrift für die Verwaltung muss die Inhalte wirklich tragen — eine
+   leere Liste sähe dort aus wie „nichts erfasst" und wäre eine Lüge über den
+   Stand der Website. */
+if (await da('inhalt.json')) {
+  try {
+    const inhalt = JSON.parse(await readFile(path.join(OUT, 'inhalt.json'), 'utf8'));
+    for (const feld of ['eintraege', 'galerie', 'kontakt', 'texte']) {
+      if (!Array.isArray(inhalt[feld]) || inhalt[feld].length === 0) {
+        fehler.push(`In docs/inhalt.json fehlt der Abschnitt „${feld}"`);
+      }
+    }
+  } catch (e) {
+    fehler.push(`docs/inhalt.json ist nicht lesbar: ${e.message}`);
+  }
 }
 
 if (fehler.length) {
