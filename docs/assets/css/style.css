@@ -161,28 +161,7 @@ img { max-width: 100%; height: auto; display: block; }
   .grid--split--media-first > :first-child { order: 2; }
 }
 
-/* ── 4 · Zettel & Kopf ──────────────────────────────────────────────────── */
-/* Die Ankündigung ist ein Zettel am Türrahmen, kein Marketing-Band:
-   kleines Papier mit „Klebstreifen“, mittig, von Hand hingehängt. */
-.announce {
-  position: relative;
-  width: fit-content; max-width: calc(100% - 2rem);
-  margin: 0.9rem auto 0;
-  background: var(--brand-tint);
-  color: var(--ink);
-  font-size: 0.95rem;
-  padding: 0.55rem 1.1rem;
-  border-radius: 3px;
-  box-shadow: var(--shadow-sm);
-  transform: rotate(-0.6deg);
-  text-align: center;
-}
-.announce::before {
-  content: ""; position: absolute; left: 50%; top: -0.55rem;
-  width: 4.4rem; height: 1.05rem; transform: translateX(-50%) rotate(1.2deg);
-  background: rgb(255 255 255 / 45%); border: 1px solid rgb(74 56 36 / 10%);
-}
-.announce a { font-weight: 600; }
+/* ── 4 · Kopf ───────────────────────────────────────────────────────────── */
 .dot {
   display: inline-block; width: 0.55em; height: 0.55em; border-radius: 50%;
   background: var(--ok); margin-right: 0.35em;
@@ -570,7 +549,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 @media print {
-  .site-header, .announce, .quickbar, .nav-toggle, .btn-row, .skip-link, .cta { display: none !important; }
+  .site-header, .quickbar, .nav-toggle, .btn-row, .skip-link, .cta { display: none !important; }
   body { background: #fff; color: #000; }
   .section { padding-block: 1rem; }
   a { color: inherit; text-decoration: none; }

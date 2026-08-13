@@ -379,11 +379,12 @@ async function render(layout, { slug, meta, body }) {
     .replace('{{bodyClass}}', `page-${slug}`)
     .replace('{{nav}}', navHtml(meta.nav || slug))
     .replace('{{footerLinks}}', footerLinksHtml())
-    .replace('{{announceDate}}', esc(media.litter.bornText))
     .replace(/\{\{phoneHref\}\}/g, site.breeder.phone.replace(/\s/g, ''))
     .replace(/\{\{phoneDisplay\}\}/g, esc(site.breeder.phoneDisplay))
     .replace('{{year}}', String(BUILD_YEAR))
-    .replace('{{content}}', expand(body).trimEnd());
+    .replace('{{content}}', expand(body).trimEnd())
+    // Baukommentare sind Notizen an die Werkstatt, nicht an die Besucher.
+    .replace(/[ \t]*<!--[\s\S]*?-->\n?/g, '');
 
   await writeFile(path.join(OUT, `${slug}.html`), html, 'utf8');
   return slug;
