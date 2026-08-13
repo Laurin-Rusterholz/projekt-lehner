@@ -1,0 +1,41 @@
+{
+  "stand": "2026-08-13",
+  "profil": "statische Website (GitHub-Quelle + Netlify)",
+  "referenz": "SECURITY_AUDIT.md",
+  "kopfzeilen_erwartet": {
+    "Content-Security-Policy": "frame-ancestors 'self' https://flowertech.ch https://www.flowertech.ch; object-src 'none'; base-uri 'self'",
+    "X-Content-Type-Options": "nosniff",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
+    "Strict-Transport-Security": "max-age=31536000"
+  },
+  "verbotene_pfade": [
+    "vorschau/index.html",
+    "verwaltung/index.html",
+    "vorschau.html",
+    "verwaltung.html",
+    "assets/css/vorschau.css",
+    "assets/js/vorschau.js",
+    "stand-vorschau.txt"
+  ],
+  "abhaengigkeiten": {
+    "sharp": "^0.35.3",
+    "lockfile": true,
+    "npm_audit": "0 vulnerabilities (2026-08-13)"
+  },
+  "einbettung": {
+    "erlaubte_rahmen": ["'self'", "https://flowertech.ch", "https://www.flowertech.ch"],
+    "postmessage_namespace": "flowertech-wunsch",
+    "postmessage_herkunft": ["https://flowertech.ch", "https://www.flowertech.ch", "http(s)://localhost", "http(s)://127.0.0.1"]
+  },
+  "gates": {
+    "build": "node build.mjs && node scripts/pruefe-ausgabe.mjs",
+    "workflows_github_actions": "keine",
+    "formular_backend": "keines (mailto)"
+  },
+  "offen_manuell": [
+    "Live-Header nach Deploy nachweisen, Kundenlink-Einbettung testen",
+    "GitHub Pages deaktivieren, falls aktiv",
+    "GitHub: MFA, Branch-Schutz main, Secret Scanning; Netlify: 2FA"
+  ]
+}

@@ -26,6 +26,11 @@
 
   const NS = 'flowertech-wunsch';
 
+  /* Schalten darf nur der Kundenlink selbst (flowertech.ch) — und für die
+     lokale Abnahme ein lokaler Rahmen. Nachrichten jeder anderen Einbettung
+     werden verworfen: Wer die Seite sonstwo einrahmt, bekommt hier nichts. */
+  const HERKUNFT = /^https:\/\/(www\.)?flowertech\.ch$|^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/;
+
   let imRahmen = false;
   try {
     imRahmen = window.top !== window.self;
@@ -74,12 +79,15 @@
   if (document.body) anhaengen();
   else document.addEventListener('DOMContentLoaded', anhaengen);
 
+  /* Sobald sich der Rahmen einmal gemeldet hat, kennen wir seine Herkunft und
+     antworten nur noch dorthin. Davor (Bereitmeldung) ist das Ziel offen —
+     übertragen werden ohnehin ausschliesslich öffentliche Angaben der Seite. */
+  let rahmenZiel = '*';
+
   function senden(nachricht) {
     nachricht.ns = NS;
     try {
-      // Ziel ist der Rahmen, der uns eingebettet hat. Er prüft die Herkunft;
-      // übertragen werden ausschliesslich öffentliche Angaben dieser Seite.
-      window.parent.postMessage(nachricht, '*');
+      window.parent.postMessage(nachricht, rahmenZiel);
     } catch (e) {
       /* kein Elternfenster erreichbar */
     }
@@ -162,8 +170,10 @@
   });
 
   window.addEventListener('message', (e) => {
+    if (!HERKUNFT.test(e.origin || '')) return;
     const d = e.data;
     if (!d || d.ns !== NS) return;
+    rahmenZiel = e.origin;
     if (d.type === 'arm') setzeAktiv(true);
     else if (d.type === 'disarm') setzeAktiv(false);
     else if (d.type === 'clear') markieren(null);

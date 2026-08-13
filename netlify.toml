@@ -1,18 +1,20 @@
 # Netlify-Konfiguration
-# Die fertige Website liegt im Ordner docs/ (Build-Ergebnis von build.mjs
-# und build-vorschau.mjs). Ohne diese Angabe veröffentlicht Netlify das
-# Repo-Root und zeigt nur 404.
+# Die fertige Website liegt im Ordner docs/ (Build-Ergebnis von build.mjs).
+# Ohne diese Angabe veröffentlicht Netlify das Repo-Root und zeigt nur 404.
 
 [build]
-  # Drei Schritte: Bilder holen, Website bauen, Vorschau-Rahmen darumlegen.
+  # Drei Schritte: Bilder holen, Website bauen, Ergebnis prüfen.
   #
   # Der Bilder-Schritt darf den Build NICHT umbringen. Er lädt von der alten
   # Website; ist die gerade nicht erreichbar, wäre sonst der ganze Deploy weg
   # und Netlify liesse den vorherigen Stand stehen — die Seite sähe dann
-  # unverändert aus, ohne dass jemand erführe warum. Genau das ist passiert:
-  # /vorschau/ lieferte 404, weil der alte Deploy die Seite gar nicht kannte.
-  # Bilder sind schön, aber kein Grund, die Veröffentlichung zu verlieren.
-  command = "(node scripts/fetch-images.mjs || echo 'Bilder uebersprungen — Build laeuft weiter') && node build.mjs && node build-vorschau.mjs && node scripts/pruefe-ausgabe.mjs"
+  # unverändert aus, ohne dass jemand erführe warum.
+  #
+  # pruefe-ausgabe.mjs ist der Wächter: Er bricht ab, wenn Seiten fehlen ODER
+  # wenn die alten Auslieferungsflächen (/vorschau/, /verwaltung/) wieder
+  # auftauchen. Der Rahmen für die Kundschaft ist allein der
+  # FlowerTech-Kundenlink; dieses Repo liefert nur die Website.
+  command = "(node scripts/fetch-images.mjs || echo 'Bilder uebersprungen — Build laeuft weiter') && node build.mjs && node scripts/pruefe-ausgabe.mjs"
   publish = "docs"
 
 [build.environment]
@@ -23,21 +25,20 @@
 # daraus verkleinerte WebP/JPEG-Varianten – erst dadurch werden die
 # Bilder auf dem Handy schnell und scharf.
 
-# Die Kundenoberflächen ohne abschliessenden Schrägstrich sollen dieselbe
-# Seite zeigen — status 200 ist eine Umschreibung, keine Weiterleitung:
-# Die Adresse in der Leiste bleibt, was die Kundschaft eingetippt hat.
-[[redirects]]
-  from = "/vorschau"
-  to = "/vorschau/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/verwaltung"
-  to = "/verwaltung/index.html"
-  status = 200
-
-# HIER STAND EINE CATCH-ALL-REGEL ("/*" → /404.html, status 404).
-# Sie ist entfernt, und das mit Absicht: Eine Regel über /* kann den
-# Verzeichnis-Index beschatten, sodass /vorschau/ als 404 beantwortet wird,
-# obwohl docs/vorschau/index.html existiert. Nötig war sie ohnehin nie —
-# Netlify nimmt docs/404.html von selbst für alles, was es nicht gibt.
+# ─── Sicherheits-Kopfzeilen ──────────────────────────────────────────────────
+# Einbetten darf die Seite nur der FlowerTech-Kundenlink (und sie selbst) —
+# das ist der Clickjacking-Schutz. X-Frame-Options kann keine fremde Herkunft
+# erlauben und bleibt deshalb weg; frame-ancestors ist die massgebliche Regel.
+#
+# Bewusst OHNE script-src/style-src: Die Seite trägt eingebettetes JSON-LD und
+# wunsch.js fügt im Vorschau-Rahmen ein <style> ein — eine strikte CSP dafür
+# braucht Hashes und einen Probelauf auf Staging (siehe SECURITY_AUDIT.md),
+# sonst risse sie Sichtbares ab, ohne dass es hier jemand merkte.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "frame-ancestors 'self' https://flowertech.ch https://www.flowertech.ch; object-src 'none'; base-uri 'self'"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+    Strict-Transport-Security = "max-age=31536000"
