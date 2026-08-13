@@ -387,7 +387,108 @@ async function render(layout, { slug, meta, body }) {
     .replace(/[ \t]*<!--[\s\S]*?-->\n?/g, '');
 
   await writeFile(path.join(OUT, `${slug}.html`), html, 'utf8');
+  sammleTexte(slug, meta, html);
   return slug;
+}
+
+/* ------------------------------------------------------- Inhalt für die
+   Verwaltung. Die Verwaltung im FlowerTech-Kundenlink soll nicht leer
+   dastehen und auch nichts erfinden: Sie zeigt, was HEUTE auf der Website
+   steht. Dafür legt der Build eine maschinenlesbare Abschrift der
+   ausgelieferten Inhalte daneben — dieselben Felder, die die Verwaltung
+   anbietet, damit dort nichts umgedeutet werden muss.
+
+   Nur Öffentliches: exakt die Texte und Bildadressen, die ohnehin auf jeder
+   Seite stehen. Keine Zugangsdaten, keine Projektinterna. */
+
+const texteSammlung = [];
+
+const ohneTags = (s) =>
+  String(s)
+    .replace(/<[^>]*>/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&ndash;/g, '–')
+    .replace(/&middot;/g, '·')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+function sammleTexte(slug, meta, html) {
+  if (slug === '404') return; // Fehlerseite ist Technik, kein Inhalt zum Pflegen
+  const seite = meta.title || (slug === 'index' ? 'Startseite' : slug);
+  const haupt = (/<main[^>]*>([\s\S]*?)<\/main>/.exec(html) || ['', ''])[1];
+  const nimm = (muster, name) => {
+    const treffer = muster.exec(haupt);
+    if (!treffer) return;
+    const wert = ohneTags(treffer[1]);
+    if (wert) texteSammlung.push({ label: `${seite} · ${name}`, wert });
+  };
+
+  nimm(/<h1[^>]*>([\s\S]*?)<\/h1>/, 'Überschrift');
+  nimm(/<p class="(?:page-head__lead|lead)"[^>]*>([\s\S]*?)<\/p>/, 'Einleitung');
+
+  let m;
+  const h2 = /<h2[^>]*>([\s\S]*?)<\/h2>/g;
+  let nummer = 0;
+  while ((m = h2.exec(haupt)) !== null) {
+    const wert = ohneTags(m[1]);
+    nummer += 1;
+    if (wert) texteSammlung.push({ label: `${seite} · Abschnitt ${nummer}`, wert });
+  }
+}
+
+async function writeInhalt() {
+  const bild = (base, breite) => `${base}-${breite}.jpg`;
+
+  const eintraege = cats.map((cat) => ({
+    name: `${cat.callName} – ${cat.name}`,
+    kurz: cat.teaser || '',
+    geboren: cat.bornText || '',
+    merkmale: [cat.colourCode, cat.colour, cat.carries].filter(Boolean).join(' · '),
+    bild: bild(cat.image.base, (cat.image.widths || [800])[1] || cat.image.widths[0]),
+    text: cat.intro || ''
+  }));
+
+  const galerie = (media.archive?.images || []).map((b) => ({
+    bild: bild(b.base, (media.archive.widths || [800])[1] || media.archive.widths[0]),
+    name: b.alt || ''
+  }));
+
+  const anschrift = [
+    site.breeder.family,
+    [site.breeder.postalCode, site.breeder.city].filter(Boolean).join(' '),
+    site.breeder.country
+  ].filter(Boolean).join(', ');
+
+  await writeFile(
+    path.join(OUT, 'inhalt.json'),
+    JSON.stringify(
+      {
+        hinweis: 'Abschrift der veroeffentlichten Inhalte dieser Website. Erzeugt von build.mjs.',
+        stand: new Date().toISOString(),
+        commit: process.env.COMMIT_REF || process.env.GITHUB_SHA || '',
+        eintraege,
+        galerie,
+        kontakt: [
+          { label: 'E-Mail', wert: site.breeder.email || '' },
+          { label: 'Telefon', wert: site.breeder.phoneDisplay || '' },
+          { label: 'Adresse', wert: anschrift }
+        ],
+        recht: [
+          { label: 'Verantwortlich', wert: site.breeder.family || '' },
+          { label: 'Adresse', wert: anschrift },
+          { label: 'E-Mail', wert: site.breeder.email || '' }
+        ],
+        texte: texteSammlung
+      },
+      null,
+      1
+    ),
+    'utf8'
+  );
 }
 
 /* ------------------------------------------------------------- Nebendateien */
@@ -461,6 +562,7 @@ async function build() {
   await writeFile(path.join(OUT, 'assets', 'img', 'favicon.svg'), FAVICON, 'utf8');
   await writeFile(path.join(OUT, '.nojekyll'), '', 'utf8');
   await writeSitemap(slugs);
+  await writeInhalt();
 
   /* Ein Marker, der sagt WELCHER Stand ausgeliefert wird. Ohne ihn liess sich
      von aussen nicht unterscheiden, ob eine fehlende Seite an einem alten

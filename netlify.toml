@@ -42,3 +42,13 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
     Strict-Transport-Security = "max-age=31536000"
+
+# Die Abschrift der veröffentlichten Inhalte (build.mjs → inhalt.json) darf der
+# FlowerTech-Kundenlink lesen: Nur so kann die Verwaltung dort zeigen, was HEUTE
+# auf dieser Website steht, statt leer dazustehen. Freigegeben ist genau diese
+# eine Datei und genau diese eine Herkunft; der Inhalt ist ohnehin öffentlich.
+[[headers]]
+  for = "/inhalt.json"
+  [headers.values]
+    Access-Control-Allow-Origin = "https://flowertech.ch"
+    Cache-Control = "public, max-age=60"
