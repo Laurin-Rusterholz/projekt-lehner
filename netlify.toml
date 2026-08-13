@@ -45,10 +45,17 @@
 
 # Die Abschrift der veröffentlichten Inhalte (build.mjs → inhalt.json) darf der
 # FlowerTech-Kundenlink lesen: Nur so kann die Verwaltung dort zeigen, was HEUTE
-# auf dieser Website steht, statt leer dazustehen. Freigegeben ist genau diese
-# eine Datei und genau diese eine Herkunft; der Inhalt ist ohnehin öffentlich.
+# auf dieser Website steht, statt leer dazustehen.
+#
+# Freigegeben ist genau EINE Datei — und für sie steht die Freigabe auf "*".
+# Das ist Absicht: Diese Datei enthält nichts als die Texte und Bildadressen,
+# die ohnehin auf jeder Seite dieser Website öffentlich stehen. Eine engere
+# Angabe kann nur eine einzige Herkunft nennen und wäre schon bei
+# "www.flowertech.ch" statt "flowertech.ch" still gescheitert — sie hätte also
+# nichts geschützt und die Verwaltung leer gelassen. Alles Übrige bleibt
+# unverändert gesperrt (siehe die Kopfzeilen oben).
 [[headers]]
   for = "/inhalt.json"
   [headers.values]
-    Access-Control-Allow-Origin = "https://flowertech.ch"
+    Access-Control-Allow-Origin = "*"
     Cache-Control = "public, max-age=60"
