@@ -2,4 +2,4 @@ Schritt      : build.mjs (Website)
 Seiten       : 15
 Commit       : unbekannt
 Zweig        : unbekannt
-Gebaut       : 2026-08-13T19:24:30.283Z
+Gebaut       : 2026-08-13T19:54:28.066Z
