@@ -104,6 +104,39 @@ if (await da('inhalt.json')) {
   }
 }
 
+/* Der Grundton darf nicht wieder ins warme Creme/Amber kippen — das war der
+   Befund „sieht sehr nach KI aus". Geschmack lässt sich nicht prüfen, diese
+   beiden Kennwerte schon. */
+{
+  const css = await readFile(
+    path.join(path.dirname(path.dirname(fileURLToPath(import.meta.url))), 'src/assets/css/style.css'),
+    'utf8'
+  );
+  const ton = (name) => {
+    const t = new RegExp('--' + name + ':\\s*#([0-9a-f]{6})', 'i').exec(css);
+    if (!t) return null;
+    const v = t[1];
+    return {
+      r: parseInt(v.slice(0, 2), 16),
+      g: parseInt(v.slice(2, 4), 16),
+      b: parseInt(v.slice(4, 6), 16)
+    };
+  };
+  const grund = ton('grund');
+  const signal = ton('signal');
+  if (!grund || !signal) fehler.push('In style.css fehlen die Grundtöne --grund oder --signal');
+  else {
+    if (grund.r - grund.b > 4) {
+      fehler.push(`Der Grundton ist wieder warm (r${grund.r} b${grund.b}) — kein Cremepapier`);
+    }
+    // Terrakotta/Clay: rot, aber mit deutlich angehobenem Grünkanal.
+    const clay = signal.r > signal.b && signal.g / signal.r > 0.35 && signal.g / signal.r < 0.8;
+    if (clay) {
+      fehler.push(`Der Akzent ist wieder ein Terrakotta-Ton (r${signal.r} g${signal.g} b${signal.b})`);
+    }
+  }
+}
+
 if (fehler.length) {
   console.error(`\n✗ Das Build-Ergebnis stimmt nicht — ${fehler.length} Punkt(e):`);
   fehler.forEach((f) => console.error(`  · ${f}`));
